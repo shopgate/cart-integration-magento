@@ -244,7 +244,7 @@ class Shopgate_Framework_Model_Payment_Cc_Authncim extends Shopgate_Framework_Mo
     public function checkGenericValid()
     {
         $cardModel = Mage::getModel('tokenbase/card');
-        if (empty($cardModel)) {
+        if ($cardModel === false) {
             return false;
         }
 
