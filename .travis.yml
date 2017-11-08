@@ -7,7 +7,7 @@ before_script:
 - composer install
 
 script:
-- src/shopgate/vendor/bin/phpunit
+- vendor/bin/phpunit
 
 jobs:
   include:
@@ -24,7 +24,7 @@ jobs:
   - stage: Unit Test + Code Style Fixing
     php: 5.6
     script:
-    - src/shopgate/vendor/bin/phpunit
+    - vendor/bin/phpunit
   - stage: deploy
     php: 5.6
     before_script: skip
