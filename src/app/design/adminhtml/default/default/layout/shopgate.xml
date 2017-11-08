@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>shopgate/target.js</name>
+            </action>
+        </reference>
+    </default>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addCss">
+                <name>shopgate/shopgate_admin.css</name>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+    <adminhtml_shopgate_connect>
+        <reference name="content">
+            <block type="shopgate/adminhtml_oAuth_connect" after="-" name="shopgate.connect">
+                <action method="removeButton">
+                    <alias>reset</alias>
+                </action>
+                <action method="removeButton">
+                    <alias>delete</alias>
+                </action>
+                <action method="removeButton">
+                    <alias>save</alias>
+                </action>
+            </block>
+            <block type="shopgate/adminhtml_oAuth_data" after="-" name="shopgate.data"/>
+            <block type="shopgate/adminhtml_oAuth_connect_overlay" after="-" name="shopgate.overlay"/>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <name>shopgate/shopgate_admin.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>shopgate/oauth_connect.js</name>
+                <params/>
+                <if/>
+            </action>
+        </reference>
+    </adminhtml_shopgate_connect>
+    <adminhtml_shopgate_manage>
+        <reference name="content">
+            <block type="shopgate/adminhtml_oAuth_manage" after="-" name="shopgate.manage">
+                <action method="unsetChild">
+                    <alias>export_button</alias>
+                </action>
+                <action method="unsetChild">
+                    <alias>reset_filter_button</alias>
+                </action>
+                <action method="unsetChild">
+                    <alias>search_button</alias>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_shopgate_manage>
+    <adminhtml_shopgate_disconnect>
+        <reference name="content">
+            <block type="shopgate/adminhtml_oAuth_disconnect" after="-" name="shopgate.disconnect"/>
+        </reference>
+    </adminhtml_shopgate_disconnect>
+
+    <adminhtml_sales_order_view>
+        <reference name="order_info">
+            <block name="shopgate_payment_notice" type="shopgate/payment_notice" before="order_history"
+                   template="shopgate/payment/notice.phtml"/>
+        </reference>
+        <reference name="order_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_orderPaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_view>
+
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_invoicePaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_invoicePaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_creditmemoPaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_creditmemoPaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block name="shopgate_payment_fee" type="shopgate/totals_creditmemoPaymentFee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+</layout>

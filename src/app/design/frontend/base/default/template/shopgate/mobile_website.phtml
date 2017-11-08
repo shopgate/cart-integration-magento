@@ -1,0 +1,11 @@
+<?php
+$script = Mage::getSingleton('shopgate/storage_session')->getScript();
+if ($script) {
+    echo $script;
+} else {
+    //backwards compatibility with deprecated Shopgate_Framework_Model_Mobile_Redirect
+    $mobileHeader = Mage::getSingleton('core/session')->getData('shopgate_header');
+    if ($mobileHeader) {
+        echo $mobileHeader;
+    }
+}

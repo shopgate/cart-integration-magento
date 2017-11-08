@@ -1,0 +1,24 @@
+-
+  - 'visa'
+  - 'VI'
+-
+  - 'mastercard'
+  - 'MC'
+-
+  - 'american_express'
+  - 'AE'
+-
+  - 'discover'
+  - 'DI'
+-
+  - 'jcb'
+  - 'JCB'
+-
+  - 'maestro'
+  - 'SM'
+-
+  - 'custom'
+  - 'OT'
+-
+  - ''
+  - 'OT'

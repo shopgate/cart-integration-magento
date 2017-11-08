@@ -1,0 +1,4 @@
+config:
+  default/payment/bankpayment/active: 1
+  default/payment/checkmo/active: 1
+  default/payment/banktransfer/active: 1

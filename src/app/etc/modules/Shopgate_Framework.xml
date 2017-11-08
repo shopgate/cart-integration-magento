@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Shopgate_Framework>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment/>
+                <Mage_Cms/>
+            </depends>
+        </Shopgate_Framework>
+    </modules>
+</config> 

@@ -1,0 +1,29 @@
+-
+  - PAYPAL
+  -
+    - _paypal
+- # calculates all possible paths for this payment method, e.g. 'shopgate/payment' . '_payone'
+  - PAYONE_CC
+  -
+    - _payone
+    - _payone_cc
+    - _cc
+    - _cc_payone
+-
+  - PP_WSPP_CC
+  -
+    - _pp
+    - _pp_wspp
+    - _pp_wspp_cc
+    - _pp_cc
+    - _pp_cc_wspp
+    - _wspp
+    - _wspp_pp
+    - _wspp_pp_cc
+    - _wspp_cc
+    - _wspp_cc_pp
+    - _cc
+    - _cc_pp
+    - _cc_pp_wspp
+    - _cc_wspp
+    - _cc_wspp_pp

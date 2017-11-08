@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <shopgate_menu module="shopgate">
+            <title>Shopgate</title>
+            <sort_order>100</sort_order>
+            <children>
+                <manage translate="title" module="shopgate">
+                    <title>Manage Connections</title>
+                    <action>adminhtml/shopgate/manage</action>
+                    <sort_order>20</sort_order>
+                </manage>
+                <support translate="title" module="shopgate">
+                    <title>Support</title>
+                    <action>adminhtml/shopgate/support</action>
+                    <sort_order>40</sort_order>
+                </support>
+                <website translate="title" module="shopgate">
+                    <title>www.shopgate.com</title>
+                    <action>adminhtml/shopgate/shopgate</action>
+                    <sort_order>50</sort_order>
+                </website>
+            </children>
+        </shopgate_menu>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <shopgate>
+                                        <title>Shopgate</title>
+                                    </shopgate>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <shopgate_menu module="shopgate">
+                        <title>Shopgate</title>
+                        <sort_order>100</sort_order>
+                        <children>
+                            <manage translate="title" module="shopgate">
+                                <title>Manage Connections</title>
+                                <sort_order>10</sort_order>
+                            </manage>
+                            <support translate="title" module="shopgate">
+                                <title>Support</title>
+                                <sort_order>20</sort_order>
+                            </support>
+                            <website translate="title" module="shopgate">
+                                <title>www.shopgate.com</title>
+                                <sort_order>30</sort_order>
+                            </website>
+                        </children>
+                    </shopgate_menu>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,47 @@
+dist: precise
+sudo: false
+language: php
+
+before_script:
+- phpenv config-rm xdebug.ini || return 0
+- composer install
+
+script:
+- src/shopgate/vendor/bin/phpunit
+
+jobs:
+  include:
+  - stage: Unit Test + Code Style Fixing
+    php: 5.3
+  - stage: Unit Test + Code Style Fixing
+    php: 5.4
+  - stage: Unit Test + Code Style Fixing
+    php: 5.5
+  - stage: Unit Test + Code Style Fixing
+    php: 7.0
+  - stage: Unit Test + Code Style Fixing
+    php: 7.1
+  - stage: Unit Test + Code Style Fixing
+    php: 5.6
+    script:
+    - src/shopgate/vendor/bin/phpunit
+  - stage: deploy
+    php: 5.6
+    before_script: skip
+    script:
+    - if [[ "$TRAVIS_TAG" ]]; then ./release/build_release_package.sh ; fi
+    deploy:
+      provider: releases
+      api_key:
+        secure: BfhxwjxQ8hX7BgEqZjMj0o0dbtLf6FGG4kmkO4i1R2PiS0iZXdRuIQp7TtUKDyWnZ9u52FMM3Ll84OlfT8ZrAc42H31q0yWqGwJCbXQBw2LrBHaeReLOHC5eeMJA1T1BYyItsYuZHmPzTeG85kYs7HRSN8fvbPiwPK382xI4uXYx9qoMzZYcwUI184c0lU/VPkil0qMibiaY4zbCSBuw/Qz6HlZyzpy6FHiWfkaFaWO5vwTMCkPgTTsDz2J1NLSH9to3/U9wU6cegj89olN41hXPtkjjfsG37UFc7F7oWc/BgPPj4VcpOTkM151SZQMfVTyuyg/PdltCWW26e7Qiid0HMs5tczisYNXg9o9WzrgubHuHQviJlCCoVw5afHBK51z32f+qMUlLPsfc/qYkkTM0/v5UCBYuUPHNolQLuNnU3+t7SNp478uWpnPZssjRZyYKycnwMJyQc1n6+vHUZb86X6KckKHY6vK+j6oShynnTTYYK+GwsQuaBIBkW2k2RX3OlH9HhujZ72qiyDxPW+JqLF3YCuKS790peAU/DzOByIBjygeqOMyzmqeIMhYh3g3I55CAutn2/orBuKuxLNnNcGy+etoaaTU1X0TCtFdbJ4yOkSnjGIlEqelNuPFiXYj+FxTbI61yyJl6L4jwjAXm+XcusXNKzmx8P+6dutU=
+      file: shopgate-magento-integration.tgz
+      skip_cleanup: true
+      on:
+        tags: true
+
+notifications:
+  slack:
+    rooms:
+      secure: VByGngawzc9ndsMi8afmAdPLVha+1B2eLS4zzqjx55eotJYFgz1BSEfyRkh3gknXlQLpybxdBeG0B9COvU38Z/2mwNzdwFn/8K3hdNv3ZnIYHqc1vJRpMdUI3qFv4V6UoLAxIaZ74TRt6QsoCWq9TzwJOq+kb6ApsXmIlhG+VdbsZ6IvkiKAW08UC/GFDO4oOSOKL1UrjZq9ct8Y4Nt7+A0bQQELAhomzeHNapXgesnKtnZn4V1Ok4oDYh6/IL4uJbyRUADOniDeW3qziiCqcrMmLWBL/hbeTyJf5w/Ji2cMFqkMRvXfaVZ6bFvm2V0PcDzxNVtyEG5Gd13ypqT+OsZ5++cJJIYwQ+UdhDH130axaJSVSG3mIhJQhncwZpvRZHSO+brlt4EgY5SmsQuh7RhD84RTTZ9wHhn/wiPDeftBub54+WMLufaOx+4E6BCHrNuEqrn7ccw9Lkgr8wDeBXswCkAbFqYhbf5TeMQ+2tbxgdFwmTn9R12f0S+NOkEEnc1pBFW8Y1ds3TbkomRyd/nQJjLIcAX08RYmJuO+c8Vlj+Xktoh7wtzStnoTQoNWbo2/uAY5lgjURbmeKaJcw5iw11czRk7xnEuT9hmv3Q3LfItTWP/Epl6sQEVCg57XBosjHO249PV1iJHN5kjoccnHmg8q6uBjmFdZkHxJy/s=
+    on_success: change
+    on_failure: always

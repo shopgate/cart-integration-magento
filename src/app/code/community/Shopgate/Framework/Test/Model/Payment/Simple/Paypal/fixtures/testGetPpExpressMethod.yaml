@@ -1,0 +1,3 @@
+config:
+  default/payment/paypal_express/active: 1
+  default/payment/paypal_standard/active: 0

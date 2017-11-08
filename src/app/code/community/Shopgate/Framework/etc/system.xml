@@ -1,0 +1,666 @@
+<?xml version="1.0"?>
+
+<config>
+    <tabs>
+        <shopgate translate="label" module="shopgate">
+            <label>Shopgate</label>
+            <sort_order>1</sort_order>
+        </shopgate>
+    </tabs>
+    <sections>
+        <shopgate translate="label" module="shopgate">
+            <label>Configuration</label>
+            <class>shopgate-label</class>
+            <tab>shopgate</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            <groups>
+                <info>
+                    <frontend_model>shopgate/info</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                </info>
+                <version>
+                    <frontend_model>shopgate/version</frontend_model>
+                    <sort_order>999</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </version>
+                <uid>
+                    <frontend_type>Hidden</frontend_type>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <show_in_default>0</show_in_default>
+                </uid>
+                <option translate="label comment">
+                    <label>Basic Configuration</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <default_store translate="label">
+                            <label>Default Store</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_store</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_store>
+                        <active translate="label tooltip">
+                            <label>Enable</label>
+                            <tooltip>Enables the Shopgate module for this store view.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <backend_model>shopgate/system_config_source_validation_config</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <oauth_button translate="label comment">
+                            <label>Shopgate Link</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>shopgate/adminhtml_oAuth_config_connector</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please connect before configuring!</comment>
+                        </oauth_button>
+                    </fields>
+                </option>
+            </groups>
+
+            <groups>
+                <mobile translate="label">
+                    <label>Mobile Website</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <alias translate="label comment tooltip">
+                            <label>Shop alias</label>
+                            <comment>Link: &lt;a href="https://admin.shopgate.com/" target="_blank"&gt;Shopgate merchant area&lt;/a&gt;</comment>
+                            <tooltip>You can find the alias at the "Integration" section of your merchant area.</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </alias>
+                        <cname translate="label comment tooltip">
+                            <label>Custom URL to mobile webpage (CNAME) incl. http(s)://</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Link: &lt;a href="https://admin.shopgate.com/" target="_blank"&gt;Shopgate merchant area&lt;/a&gt;</comment>
+                            <tooltip>Enter a custom URL (defined by CNAME) for your mobile website. You can find the URL at the "Integration" section of your shop after you activated this option in the "Settings" => "Mobile website / webapp" section.</tooltip>
+                            <sort_order>30</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cname>
+                        <redirect_type translate="label comment tooltip">
+                            <label>Redirect Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_redirect_types</source_model>
+                            <comment>Change this only if you use external caching software or engines and experience problems with the HTTP redirect.</comment>
+                            <tooltip>HTTP redirect is the recommended method for better performance and search engine rankings. However, using external cache engines (e.g. &lt;strong&gt;Varnish-Cache&lt;/strong&gt;) might cause problems such as a "redirect loop". In that case the JavaScript redirect should solve the problem.</tooltip>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_type>
+                        <enable_default_redirect translate="label tooltip comment">
+                            <label>Always redirect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Activate this option to always redirect to mobile version.</comment>
+                            <tooltip>By default customers get always redirected to the mobile version of your page. But you can disable it to redirect only if they're on product details, category listing or index.&lt;br /&gt;&lt;br /&gt; Set this option to "Yes" to always redirect your customers to the mobile version.&lt;br /&gt;&lt;br /&gt; Set this option to "No" to redirect only on product detail, category listing and index.</tooltip>
+                            <sort_order>100</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_default_redirect>
+                        <disable_redirect_routes translate="label tooltip comment">
+                            <label>Disable redirect for specific routes</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>List the routes you dont want to have redirected through the mobile redirect (comma seperated).</comment>
+                            <sort_order>110</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_redirect_routes>
+                        <disable_redirect_controllers translate="label tooltip comment">
+                            <label>Disable redirect for specific controllers</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>List the controller names you dont want to have redirected through the mobile redirect (comma seperated).</comment>
+                            <sort_order>120</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_redirect_controllers>
+                        <disable_redirect_products translate="label tooltip comment">
+                            <label>Disable redirect for specific products</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>List the product id's you dont want to have redirected through the mobile redirect (comma seperated).</comment>
+                            <sort_order>130</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_redirect_products>
+                        <disable_redirect_categories translate="label tooltip comment">
+                            <label>Disable redirect for specific categories</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>List the category id's you dont want to have redirected through the mobile redirect (comma seperated).</comment>
+                            <sort_order>140</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_redirect_categories>
+                        <cms_map translate="label comment">
+                            <label>Map CMS Pages for redirect</label>
+                            <frontend_model>shopgate/cmsMapRouter</frontend_model>
+                            <backend_model>shopgate/system_config_backend_serialized_cmsMap</backend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Allows mapping of Magento CMS pages to Shopgate CMS pages</comment>
+                        </cms_map>
+                    </fields>
+                </mobile>
+            </groups>
+            <groups>
+                <export translate="label">
+                    <label>Products Export</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <product_types translate="label comment">
+                            <label>Product types to be exported</label>
+                            <comment>Note: Downloadable products cannot be sold via Shopgate yet</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>shopgate/system_config_source_product_types</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_types>
+                        <product_names translate="label comment">
+                            <label>Product names to be exported</label>
+                            <comment>Note: Child product names or parent name should be exported</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_product_names</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_names>
+                        <description_nl2br translate="label comment">
+                            <label>Keep line breaks</label>
+                            <comment>In case of duplicate line breaks in your Shopgate apps, disable this option for the concerned description type(s).</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>shopgate/system_config_source_description_list</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description_nl2br>
+                        <description translate="label">
+                            <label>Products description layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_description</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+                        <description_attr_code translate="label">
+                            <label>Custom Description attribute code</label>
+                            <tooltip>code1,code2,code3,...</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>21</sort_order>
+                            <depends>
+                                <description>4</description>
+                            </depends>
+                            <validate>required-entry</validate>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description_attr_code>
+                        <filterable_attributes translate="label comment">
+                            <label>Export filterable attributes</label>
+                            <comment>Attribute "Use In Layered Navigation" != "No"</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </filterable_attributes>
+                        <use_root_price translate="label tooltip">
+                            <label>Ignore subproducts prices</label>
+                            <tooltip>Choose "yes" to export the parent products' prices for subproducts as well.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_root_price>
+                        <weight_unit translate="label tooltip">
+                            <label>Weight unit</label>
+                            <tooltip>Override default weight unit</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_weight_units</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </weight_unit>
+                        <export_variation_description translate="label tooltip">
+                            <label>Export variation description</label>
+                            <tooltip>Select which description should be exported for configurable subproducts.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_variation_export_type</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_variation_description>
+                        <export_variation_image translate="label tooltip">
+                            <label>Export variation images</label>
+                            <tooltip>Select which images should be exported for configurable subproducts.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_variation_export_type
+                            </source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_variation_image>
+                        <export_excluded_image translate="label tooltip">
+                            <label>Export excluded images</label>
+                            <tooltip>Export product images which are excluded normally.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_excluded_image>
+                        <export_lowres_image translate="label tooltip">
+                            <label>Export images with low resolution</label>
+                            <tooltip>Export product images which have a height/width under 150 pixels.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>46</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_lowres_image>
+                        <first_export_image>
+                            <label>Source Main Product Image</label>
+                            <tooltip>It will be shown in product list and as first on detail page</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_product_image</source_model>
+                            <sort_order>47</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </first_export_image>
+                        <is_export_stores translate="label tooltip">
+                            <label>Export all stores of this website</label>
+                            <tooltip>Choose "yes" if you manage stores as main categories (e.g. one store per manufacturer).</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </is_export_stores>
+                        <export_stores translate="label comment">
+                            <label>Store of website to export</label>
+                            <comment>Make sure you select only one view per store!</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>shopgate/system_config_source_store</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <is_export_stores>1</is_export_stores>
+                            </depends>
+                        </export_stores>
+                        <available_text_attribute_code translate="label tooltip">
+                            <label>Attributecode for available text</label>
+                            <tooltip>Enter attribute code which is used to display the available text in store front. If this field is empty the magento default text is used on export.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_attribute</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </available_text_attribute_code>
+                        <ean_attr_code translate="label tooltip">
+                            <label>EAN attribute code</label>
+                            <tooltip>Enter attribute code which is used for EAN</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>65</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ean_attr_code>
+                        <upc_attr_code translate="label tooltip">
+                            <label>UPC attribute code</label>
+                            <tooltip>Enter attribute code which is used for UPC</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </upc_attr_code>
+                        <filter_properties translate="label comment">
+                            <label>Filter for properties</label>
+                            <comment>Attributes which should be ignored.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>shopgate/system_config_source_attribute</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </filter_properties>
+                        <force_property_export translate="label comment">
+                            <label>Force the export of properties</label>
+                            <comment>Attributes which have to get exported</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>shopgate/system_config_source_attribute</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </force_property_export>
+                        <hidden_categories_ids translate="label comment tooltip">
+                            <label>Export hidden categories</label>
+                            <comment>id1,id2,id3,...</comment>
+                            <tooltip>Export categories which are inactive in Magento</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hidden_categories_ids>
+                        <export_navigation_categories_only translate="label comment">
+                            <label>Export categories from navigation menu only</label>
+                            <comment>All others will be exported as inactive</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_navigation_categories_only>
+                        <item_sort translate="label">
+                            <label>Products sort order</label>
+                            <tooltip>Sort order for products in categories</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_item_sort</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </item_sort>
+                        <net_market_countries translate="label">
+                            <label>Net market countries</label>
+                            <comment>Defines which countries should get treated like net markets (e.g. US or GR)</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>tax/system_config_source_tax_country</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </net_market_countries>
+                        <use_price_index_on_export translate="label comment">
+                            <label>Use Article Price Index in Product Export</label>
+                            <comment>Using the price index will speed up the export process but may show wrong prices if the index is outdated.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_price_index_on_export>
+                    </fields>
+                </export>
+            </groups>
+
+            <groups>
+                <orders translate="label">
+                    <label>Orders Import</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <mark_unblocked_orders_as_paid translate="label">
+                            <label>Mark unblocked orders as "paid"</label>
+                            <comment>This might be necessary when using certain ERP systems.</comment>
+                            <tooltip>Choose "yes" to mark orders that are not blocked for shipping by Shopgate as "paid" in your system. Example: Payment via invoice.</tooltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mark_unblocked_orders_as_paid>
+                        <send_new_order_mail translate="label">
+                            <label>Send email to customer on new order</label>
+                            <comment>Note: Shopgate also sends a order confirmation email to the customer!</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_new_order_mail>
+                        <confirm_shipping_on_complete translate="label">
+                            <label>Confirm shipping to shopgate if order state is complete</label>
+                            <comment>Note: Please clarify it with an integration agent of Shopgate!</comment>
+                            <tootltip>The shipping will send to Shopgate without a shipment entry!</tootltip>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </confirm_shipping_on_complete>
+                        <write_customfields_into_statushistory translate="label">
+                            <label>Write Shopgate Custom fields into the status history as comment</label>
+                            <comment>Note: Will be visible in the order status history!</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </write_customfields_into_statushistory>
+                        <payment_title translate="label">
+                            <label>Shopgate Payment Title</label>
+                            <comment>Note: Will be visible in Customer Account and transactional Mails!</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_title>
+                        <apply_cart_rules translate="label comment">
+                            <label>Apply Shopping Cart Price Rules to mobile orders</label>
+                            <comment>Note: The discount will be shown as a coupon on the mobile shop's cart page.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </apply_cart_rules>
+                        <show_cartrule_label translate="label tooltip">
+                            <label>Display default cart rule label</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <tooltip>If set to YES, your cart rule label will be displayed to customers at Shopgate checkout. If set to NO, 'Discount' will be displayed. Cart rules that have an associated coupon code will always display the coupon code.</tooltip>
+                            <sort_order>55</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <apply_cart_rules>1</apply_cart_rules>
+                            </depends>
+                        </show_cartrule_label>
+                        <add_only_simple translate="label comment">
+                            <label>Add only the simple Product to order</label>
+                            <comment>Note: In case the order contains a simple/config product, only the the simple product will be added to the order.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_only_simple>
+                        <force_shopgate_fix translate="label comment tooltip">
+                            <label>Use shipping prices from Shopgate</label>
+                            <comment>Forces the shipping method to be 'shopgate_fix'</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip>Forces the shipping method to be 'shopgate_fix' and therefore rewrites calculated shipping prices with Shopgate’s shipping price</tooltip>
+                        </force_shopgate_fix>
+                        <use_shopgate_prices translate="label comment">
+                            <label>Use product prices from shopgate</label>
+                            <comment>Note: If you plan to use special discount for mobile, this option needs to be activated.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_shopgate_prices>
+                    </fields>
+                </orders>
+            </groups>
+
+            <groups>
+                <debug translate="label">
+                    <label>Connection Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <server translate="label">
+                            <label>Shopgate server</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shopgate/system_config_source_server</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </server>
+                        <api_url translate="label">
+                            <label>API URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <server>custom</server>
+                            </depends>
+                            <validate>validate-url</validate>
+                        </api_url>
+                        <htaccess_user translate="label">
+                            <label>.htaccess user</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </htaccess_user>
+                        <htaccess_pass translate="label">
+                            <label>.htaccess password</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </htaccess_pass>
+                    </fields>
+                </debug>
+            </groups>
+        </shopgate>
+
+        <payment>
+            <groups>
+                <shopgate translate="label" module="payment">
+                    <label>Shopgate</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status
+                            </source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry
+                            </validate>
+                        </order_status>
+                    </fields>
+                </shopgate>
+                <mobile_payment translate="label" module="payment">
+                    <label>Mobile Payment (Shopgate)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>31</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status
+                            </source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                    </fields>
+                </mobile_payment>
+            </groups>
+        </payment>
+    </sections>
+</config>

@@ -1,0 +1,25 @@
+scope:
+  website:
+    - website_id: 1
+      code: default
+      name: Default Website
+      default_group_id: 1
+      is_default: 1
+  group:
+    - group_id: 1
+      website_id: 1
+      name: Default Store Group
+      default_store_id: 1
+      root_category_id: 2 #default
+  store:
+    - store_id: 1
+      website_id: 1
+      group_id: 1
+      code: default
+      name: Default Store
+      is_active: 1
+config:
+  shopgate/option/active: 0
+  stores/default/dev/log/active: 1
+  stores/default/dev/log/file: tests-system.log
+  stores/default/dev/log/exception_file: tests-exception.log

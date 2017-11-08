@@ -1,0 +1,8 @@
+.idea
+/.buildpath
+/.project
+/.settings
+/vendor
+/release/magento
+/release/magento1702.zip
+/shopgate-magento-integration.tgz

@@ -1,0 +1,3 @@
+config:
+  default/payment/banktransfer/active: 1
+  default/payment/checkmo/active: 1

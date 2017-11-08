@@ -1,0 +1,40 @@
+-
+  - 1
+  - AA
+  - AA
+-
+  - 2
+  - AA
+  - AA
+-
+  - 3
+  - AA
+  - AA
+-
+  - 1
+  - AA_BB
+  - AA
+-
+  - 2 
+  - AA_BB
+  - BB
+-
+  - 3
+  - AA_BB
+  - AA
+- #testing getting first part of 'AA_BB_CC', which is 'AA'
+  - 1
+  - AA_BB_CC 
+  - AA
+- #testing getting second part of 'AA_BB_CC', which is 'BB'
+  - 2
+  - AA_BB_CC
+  - BB
+- #testing getting third part of 'AA_BB_CC', which is 'CC'
+  - 3
+  - AA_BB_CC 
+  - CC
+- #testing getting fourth part of 'AA_BB_CC', doesn't exist, defaults to first part 'AA'
+  - 4
+  - AA_BB_CC
+  - AA

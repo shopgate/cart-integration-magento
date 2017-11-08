@@ -1,0 +1,2 @@
+config:
+  default/payment/paypal_standard/active: 1

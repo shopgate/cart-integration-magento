@@ -1,0 +1,2 @@
+config:
+  default/payment/bankpayment/active: 1

@@ -1,0 +1,2 @@
+config:
+  default/payment/cashondelivery/active: 1

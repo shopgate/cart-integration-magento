@@ -1,0 +1,70 @@
+.shopgate-label span,
+.shopgate-label span.active {
+    background : url("logo_small.png") no-repeat scroll 0 0 transparent !important;
+    height     : 0px;
+    overflow   : hidden;
+    padding    : 25px 0px 0px 0px !important;
+    margin     : 0.2em 0em -1.3em 1.5em;
+}
+
+.shopgate-label.active {
+    border-bottom : medium none !important;
+}
+
+.shopgate {
+    background    : #FAFAFA;
+    border        : 1px solid #CCCCCC;
+    margin-bottom : 10px;
+    padding       : 10px;
+    height        : auto;
+}
+
+.shopgate h3 {
+    color : #EA7601;
+}
+
+.shopgate img {
+    border : 0px solid #CCCCCC;
+    height : 100px;
+}
+
+.shopgate .info {
+    padding     : 5px 10px 0 5px;
+    margin-left : 0px;
+}
+
+.shopgate li ul li {
+    margin-left : 2em;
+}
+
+.contact-type {
+    color       : #EA7601;
+    font-weight : bold;
+}
+
+.shopgate p {
+    font-size : 15pt;
+}
+
+.shopgate .nested-content > ul {
+    margin-left : 2em;
+}
+
+.library-info {
+    margin-top : 15px;
+}
+
+#unregister_shopgate_connection_dialog {
+    position : absolute;
+    left     : -3000px;
+    width    : 400px;
+    height   : auto;
+}
+
+#unregister_shopgate_connection_dialog .decline {
+    float : left;
+}
+
+#unregister_shopgate_connection_dialog .confirm {
+    float : right;
+}

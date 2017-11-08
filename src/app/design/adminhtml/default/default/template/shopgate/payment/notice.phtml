@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright Shopgate Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @author    Shopgate Inc, 804 Congress Ave, Austin, Texas 78701 <interfaces@shopgate.com>
+ * @copyright Shopgate Inc
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ */
+
+/**
+ * @var Shopgate_Framework_Block_Payment_Notice $this
+ */
+$shopgateOrder = $this->getShopgateOrder();
+
+if ($shopgateOrder->getId()): ?><?php $shopgateObject = $shopgateOrder->getShopgateOrderObject(); ?>
+    <div class="entry-edit box-left">
+        <div class="entry-edit-head">
+            <h4 class="icon-head"><?php echo $this->__('Shopgate Info') ?></h4>
+        </div>
+        <fieldset>
+            <div id="shopgate_payment_notice">
+                <?php
+                if (!$shopgateOrder->getId() || empty($shopgateObject)):
+                    echo $this->printHtmlError($this->__('Error importing order information: please contact Shopgate'));
+                endif;
+
+                if ($shopgateObject && $shopgateObject->getIsTest()):
+                    echo $this->printHtmlError("## This order is a TEST by Shopgate - DO NOT SHIP!");
+                endif;
+
+                if ($this->hasDifferentPrices()):
+                    echo $this->printHtmlError(
+                        "!! The total amount in Magento differs from the total amount at Shopgate. Please check your tax settings."
+                    );
+                endif;
+
+                echo $this->__('Shopgate order number: %s', $shopgateOrder->getShopgateOrderNumber());
+                echo $this->__('<br/>');
+                echo $this->__('Shipping mapping: %s', $this->getOrder()->getShippingMethod());
+                ?>
+            </div>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+
+<?php endif; ?>

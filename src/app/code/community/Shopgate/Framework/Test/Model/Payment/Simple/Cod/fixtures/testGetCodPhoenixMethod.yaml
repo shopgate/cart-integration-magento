@@ -1,0 +1,4 @@
+config:
+  default/payment/cashondelivery/active: 1
+  default/payment/phoenix_cashondelivery/active: 1
+  default/payment/msp_cashondelivery/active: 0

@@ -1,0 +1,19 @@
+<?php
+$_helper = Mage::helper('shopgate');
+?>
+<div id="unregister_shopgate_connection_dialog" class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $_helper->__('Disconnect the current shop?') ?></h4>
+    </div>
+    <div class="fieldset">
+        <p><?php echo $_helper->__('The selected storeview is already connected to a shop.') ?></p>
+        <p><?php echo $_helper->__('Do you want to disconnect the given shop and connect it again?') ?><p>
+        <form>
+            <input id="disconnect_shopgate_storeview_decline" class="decline" type="button"
+                   value="<?php echo $_helper->__('decline') ?>">
+            <input id="disconnect_shopgate_storeview_confirm" class="confirm" type="button"
+                   value="<?php echo $_helper->__('confirm') ?>">
+        </form>
+        <br style="clear: both;" />
+    </div>
+</div>
