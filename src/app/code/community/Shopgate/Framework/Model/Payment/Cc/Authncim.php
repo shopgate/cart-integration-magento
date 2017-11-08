@@ -238,15 +238,14 @@ class Shopgate_Framework_Model_Payment_Cc_Authncim extends Shopgate_Framework_Mo
     /**
      * Use this method to check if we can get a $card object
      * Then use regular Authorize when we cannot.
-     * Return true if call is made by redeem_coupons call, as
-     * we just need to validate to get the payment method name.
      *
      * @return bool
      */
     public function checkGenericValid()
     {
-        if ($this->getShopgateOrder() instanceof ShopgateCart) {
-            return true;
+        $cardModel = Mage::getModel('tokenbase/card');
+        if ($cardModel === false) {
+            return false;
         }
 
         $card = $this->getCustomerCard();
