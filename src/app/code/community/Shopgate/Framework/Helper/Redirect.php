@@ -38,6 +38,7 @@ class Shopgate_Framework_Helper_Redirect extends Mage_Core_Helper_Abstract
         return !Mage::app()->getStore()->isAdmin()
                && !(method_exists(Mage::app()->getRequest(), 'isAjax') && Mage::app()->getRequest()->isAjax())
                && $config->isValidConfig()
+               && $config->returnAdditionalSetting('is_active')
                && $config->getShopIsActive();
     }
 
