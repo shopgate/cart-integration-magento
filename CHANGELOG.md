@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Cloud API controller for /shopgate/v2/ access
+### Changed
+- Moved the library to sub-folder inside lib/Shopgate in preparation for future libraries
 ### Fixed
 - prevent redirect, if the module is disabled for the active storeview
+- issue with modman not deploying files to the right places
 
 ## 2.9.63
 ### Added
