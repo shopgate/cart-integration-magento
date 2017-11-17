@@ -20,7 +20,7 @@
  */
 
 /** @noinspection PhpIncludeInspection */
-include_once Mage::getBaseDir('lib') . '/Shopgate/shopgate.php';
+include_once Mage::getBaseDir('lib') . '/Shopgate/cart-integration-sdk/shopgate.php';
 
 /**
  * Produces an info block for orders

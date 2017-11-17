@@ -19,7 +19,8 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 
-include_once Mage::getBaseDir("lib") . '/Shopgate/shopgate.php';
+/** @noinspection PhpIncludeInspection */
+include_once Mage::getBaseDir('lib') . '/Shopgate/cart-integration-sdk/shopgate.php';
 
 class Shopgate_Framework_Test_Controller_FrameworkController
     extends EcomDev_PHPUnit_Test_Case_Controller
