@@ -17,7 +17,7 @@ unzip release/magento1702.zip -d release/magento
 
 rsync -av src/ release/magento
 rsync -av CHANGELOG.md release/magento/app/code/community/Shopgate/Framework/CHANGELOG.md
-rsync -av vendor/shopgate/cart-integration-sdk/ release/magento/lib/Shopgate
+rsync -av vendor/shopgate/cart-integration-sdk/ release/magento/lib/Shopgate/cart-integration-sdk/
 rsync -av release/magento_package.php release/magento/magento_package.php
 
 cd release/magento/
