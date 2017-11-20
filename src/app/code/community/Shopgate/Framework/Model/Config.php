@@ -19,7 +19,8 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 
-include_once Mage::getBaseDir("lib") . '/Shopgate/shopgate.php';
+/** @noinspection PhpIncludeInspection */
+include_once Mage::getBaseDir('lib') . '/Shopgate/cart-integration-sdk/shopgate.php';
 
 /**
  * @method bool getMarkUnblockedOrdersAsPaid()
@@ -37,8 +38,6 @@ include_once Mage::getBaseDir("lib") . '/Shopgate/shopgate.php';
  * @method string getHtaccessPassword()
  * @method bool getExportBundlesBeta()
  * @method bool getExportSubsWithParent()
- * @author      Shopgate GmbH Butzbach
- * @package     Shopgate_Framework
  */
 class Shopgate_Framework_Model_Config extends ShopgateConfig
 {

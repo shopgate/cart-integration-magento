@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright Shopgate Inc.
  *
@@ -19,6 +18,7 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
+
 class Shopgate_Framework_Model_Redirect_Observer
 {
 
@@ -71,6 +71,6 @@ class Shopgate_Framework_Model_Redirect_Observer
         $js   = Mage::getModel('shopgate/redirect_type_js');
         $http = Mage::getModel('shopgate/redirect_type_http');
 
-        return $this->redirect->isTypeJavaScript() ? array($js) : array($http, $js);
+        return $this->redirect->isTypeJavascript() ? array($js) : array($http, $js);
     }
 }
