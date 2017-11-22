@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [2.9.63] - 2017-11-22
 ### Added
 - Cloud API controller for /shopgate/v2/ access
 ### Changed
@@ -1265,4 +1266,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.63...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.64...HEAD
+[2.9.63]: https://github.com/shopgate/cart-integration-magento/compare/2.9.62...2.9.63
