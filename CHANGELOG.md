@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Now dispatching missing quote submit events on placing Payone orders
+
 ## [2.9.64] - 2017-11-22
 ### Added
 - Cloud API controller for /shopgate/v2/ access
