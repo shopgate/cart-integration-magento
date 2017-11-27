@@ -214,9 +214,46 @@ class Shopgate_Framework_Model_Payment_Payone_Abstract extends Shopgate_Framewor
             $order->addItem($orderItem);
         }
         $order->setQuote($quote);
+        $order->setExtOrderId($quote->getPayment()->getTransactionId());
         $order->setCanSendNewEmailFlag(false);
 
         $order->getPayment()->setData('payone_config_payment_method_id', $this->_getMethodId());
+
+        $transaction->addObject($order);
+        $transaction->addCommitCallback(array($order, 'save'));
+
+        Mage::dispatchEvent('checkout_type_onepage_save_order', array('order' => $order, 'quote' => $quote));
+        Mage::dispatchEvent('sales_model_service_quote_submit_before', array('order' => $order, 'quote' => $quote));
+
+        try {
+            $transaction->save();
+            Mage::dispatchEvent(
+                'sales_model_service_quote_submit_success',
+                array(
+                    'order' => $order,
+                    'quote' => $quote,
+                )
+            );
+        } catch (Exception $e) {
+            // reset order ID's on exception, because order not saved
+            $order->setId(null);
+            /** @var $item Mage_Sales_Model_Order_Item */
+            foreach ($order->getItemsCollection() as $item) {
+                $item->setOrderId(null);
+                $item->setItemId(null);
+            }
+
+            Mage::dispatchEvent(
+                'sales_model_service_quote_submit_failure',
+                array(
+                    'order' => $order,
+                    'quote' => $quote,
+                )
+            );
+            throw $e;
+        }
+        Mage::dispatchEvent('checkout_submit_all_after', array('order' => $order, 'quote' => $quote));
+        Mage::dispatchEvent('sales_model_service_quote_submit_after', array('order' => $order, 'quote' => $quote));
 
         return $this->setOrder($order);
     }
