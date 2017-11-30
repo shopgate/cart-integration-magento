@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Fixed
 - Now dispatching missing quote submit events on placing Payone orders
+### Changed
+- Updated shopgate_orders table to use InnoDB as engine
 
 ## [2.9.64] - 2017-11-22
 ### Added
