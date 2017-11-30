@@ -19,6 +19,7 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 
+/* @var $this Mage_Core_Model_Resource_Setup */
 $this->startSetup();
 $this->run("ALTER TABLE `{$this->getTable('shopgate_order')}` ENGINE=InnoDB");
 $this->endSetup();
