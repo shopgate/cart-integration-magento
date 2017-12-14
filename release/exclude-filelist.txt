@@ -1,0 +1,6 @@
+.git/
+.gitignore
+.travis.yml
+.php-cs.cache
+.php-cs.dist
+.travis.yml
