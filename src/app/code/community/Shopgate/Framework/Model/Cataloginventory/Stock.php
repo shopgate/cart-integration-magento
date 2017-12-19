@@ -19,7 +19,12 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-class Shopgate_Framework_Model_Cataloginventory_Stock extends Mage_CatalogInventory_Model_Stock
+if (Mage::helper('core')->isModuleEnabled('Bubble_StockMovements')) {
+    class Shopgate_Framework_Model_Cataloginventory_Stock_Abstract extends Bubble_StockMovements_Model_CatalogInventory_Stock {}
+} else {
+    class Shopgate_Framework_Model_Cataloginventory_Stock_Abstract extends Mage_CatalogInventory_Model_Stock {}
+}
+class Shopgate_Framework_Model_Cataloginventory_Stock extends Shopgate_Framework_Model_Cataloginventory_Stock_Abstract
 {
     /**
      * @param Varien_Object $item
