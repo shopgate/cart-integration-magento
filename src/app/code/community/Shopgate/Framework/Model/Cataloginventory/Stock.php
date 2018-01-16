@@ -19,7 +19,7 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-if (Mage::helper('core')->isModuleEnabled('Bubble_StockMovements')) {
+if (Mage::getConfig()->getModuleConfig('Bubble_StockMovements')->is('active', 'true')) {
     class Shopgate_Framework_Model_Cataloginventory_Stock_Abstract extends Bubble_StockMovements_Model_CatalogInventory_Stock {}
 } else {
     class Shopgate_Framework_Model_Cataloginventory_Stock_Abstract extends Mage_CatalogInventory_Model_Stock {}
