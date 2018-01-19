@@ -950,7 +950,8 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
                 false
             );
             $shippingAddress     = $quote->getShippingAddress()->addData($shippingAddressData);
-
+            $shippingAddress->setSameAsBilling($invoiceAddress->equals($deliveryAddress));
+            
             $this->_getHelper()->setShippingMethod($shippingAddress, $order);
             $this->log('delivery address end', ShopgateLogger::LOGTYPE_DEBUG);
         }

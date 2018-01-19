@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Now dispatching missing quote submit events on placing Payone orders
 ### Changed
 - Updated shopgate_orders table to use InnoDB as engine
+### Added
+- Set SameAsBilling flag in quote shipping address
 
 ## [2.9.64] - 2017-11-22
 ### Added
