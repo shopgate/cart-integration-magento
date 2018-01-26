@@ -46,6 +46,8 @@ class Shopgate_Framework_Model_DreamRobot_Observer
             $c->getSaleOrder();
         }
 
+        Mage::dispatchEvent('inventory_assignation', array('order' => $magentoOrder));
+
         return true;
     }
 }
