@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.9.65] - 2017-11-22
 ### Fixed
 - Now dispatching missing quote submit events on placing Payone orders
 ### Changed
@@ -1273,5 +1275,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.64...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.65...HEAD
+[2.9.65]: https://github.com/shopgate/cart-integration-magento/compare/2.9.64...2.9.65
 [2.9.64]: https://github.com/shopgate/cart-integration-magento/compare/2.9.63...2.9.64
