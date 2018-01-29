@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
-## [2.9.65] - 2017-11-22
+## [2.9.65] - 2018-29-01
 ### Fixed
 - Now dispatching missing quote submit events on placing Payone orders
 ### Changed
