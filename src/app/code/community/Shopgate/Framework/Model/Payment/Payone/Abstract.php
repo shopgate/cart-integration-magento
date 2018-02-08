@@ -104,6 +104,10 @@ class Shopgate_Framework_Model_Payment_Payone_Abstract extends Shopgate_Framewor
                 $this->_systemConfig = $factory->getModelSystemConfigWalletType();
                 $mapping             = $this->getConfig()->getGeneral()->getStatusMapping()->getWallet();
                 break;
+            case Payone_Core_Model_System_Config_PaymentMethodCode::WALLETPAYPALEXPRESS :
+                $this->_systemConfig = $factory->getModelSystemConfigWalletType();
+                $mapping             = $this->getConfig()->getGeneral()->getStatusMapping()->getWalletPaypalExpress();
+                break;
             default:
                 $mapping = array();
         }
