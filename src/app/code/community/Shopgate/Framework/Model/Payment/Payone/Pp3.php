@@ -25,37 +25,10 @@
  * Class Shopgate_Framework_Model_Payment_Payone_Pp3
  */
 class Shopgate_Framework_Model_Payment_Payone_Pp3
-    extends Shopgate_Framework_Model_Payment_Payone_Abstract
+    extends Shopgate_Framework_Model_Payment_Payone_Pp
     implements Shopgate_Framework_Model_Payment_Interface
 {
     const PAYONE_CORE_MODEL_CONFIG_IDENTIFIER = 'payone_wallet';
     const PAYMENT_MODEL = 'payone_core/payment_method_wallet';
     const PAYMENT_IDENTIFIER = ShopgateOrder::PAYONE_PP;
-
-    /**
-     * @return string
-     */
-    protected function _getConfigCode()
-    {
-        return Payone_Api_Enum_WalletType::PAYPAL_EXPRESS;
-    }
-
-    /**
-     * Creates an invoice for the order
-     *
-     * @throws Exception
-     */
-    protected function _addInvoice()
-    {
-        if ($this->getShopgateOrder()->getIsPaid()) {
-            parent::_addInvoice();
-        } else {
-            $info    = $this->getShopgateOrder()->getPaymentInfos();
-            $invoice = $this->_getPaymentHelper()->createOrderInvoice($this->getOrder());
-            $invoice->setIsPaid(false);
-            $invoice->setTransactionId($info['txn_id']);
-            $invoice->save();
-            $this->getOrder()->addRelatedObject($invoice);
-        }
-    }
 }

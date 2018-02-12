@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright Shopgate Inc.
  *
@@ -18,21 +19,18 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-
 class Shopgate_Framework_Model_Payment_Payone extends Shopgate_Framework_Model_Payment_Simple
 {
     /**
-     * Temp rewrite for edge case where AUTHN_CC needs to be
-     * handled by AuthorizeCIM or USAEPAY_CC by ChargeItPro
-     *
      * @return false|Shopgate_Framework_Model_Payment_Abstract
      * @throws Exception
      */
     public function getModelByPaymentMethod()
     {
-        if ($this->getPaymentMethod() == ShopgateOrder::PAYONE_PP &&
-            Mage::getModel('shopgate/payment_payone_pp3', array($this->getShopgateOrder()))->isValid()) {
-            $this->setPaymentMethod('PP3'); 
+        if ($this->getPaymentMethod() === ShopgateOrder::PAYONE_PP
+            && Mage::getModel('shopgate/payment_payone_pp3', array($this->getShopgateOrder()))->isValid()
+        ) {
+            $this->setPaymentMethod('PP3');
         }
 
         return parent::getModelByPaymentMethod();
