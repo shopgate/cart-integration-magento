@@ -84,7 +84,9 @@ class Shopgate_Framework_Model_Payment_Simple_Paypal_Express
         $transaction->addCommitCallback(array($order, 'save'));
 
         try {
+            Mage::dispatchEvent('sales_order_place_before', array(self::TYPE_ORDER => $order));
             $transaction->save();
+            Mage::dispatchEvent('sales_order_place_after', array(self::TYPE_ORDER => $order));
             Mage::dispatchEvent(
                 'sales_model_service_quote_submit_success',
                 array(
