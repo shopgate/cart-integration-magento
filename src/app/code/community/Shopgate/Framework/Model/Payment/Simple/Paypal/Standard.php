@@ -37,9 +37,7 @@ class Shopgate_Framework_Model_Payment_Simple_Paypal_Standard
 
         $info        = $this->getShopgateOrder()->getPaymentInfos();
 
-        Mage::dispatchEvent('sales_order_place_before', array(self::TYPE_ORDER => $magentoOrder));
         $transaction = $this->_createTransaction($magentoOrder);
-        Mage::dispatchEvent('sales_order_place_after', array(self::TYPE_ORDER => $magentoOrder));
         $magentoOrder->getPayment()->importTransactionInfo($transaction);
         $magentoOrder->getPayment()->setLastTransId($info[self::TYPE_TRANS_ID]);
 
@@ -74,7 +72,11 @@ class Shopgate_Framework_Model_Payment_Simple_Paypal_Standard
             ShopgateLogger::getInstance()->log($x->getMessage());
         }
 
-        return $transaction->save();
+        Mage::dispatchEvent('sales_order_place_before', array(self::TYPE_ORDER => $magentoOrder));
+        $transaction->save();
+        Mage::dispatchEvent('sales_order_place_after', array(self::TYPE_ORDER => $magentoOrder));
+
+        return $transaction;
     }
 
     /**
