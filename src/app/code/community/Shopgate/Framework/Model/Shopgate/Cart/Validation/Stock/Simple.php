@@ -61,7 +61,8 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Simple
             $checkIncrements = $stockItem->checkQtyIncrements($item->getQty());
         }
 
-        if ($stockItem->getManageStock() && !$product->isSaleable() && !$stockItem->getBackorders()) {
+        if (!$product->isAvailable()
+            || ($stockItem->getManageStock() && !$product->isSaleable() && !$stockItem->getBackorders())) {
             $isBuyable        = false;
             $error            = array();
             $error['type']    = ShopgateLibraryException::CART_ITEM_OUT_OF_STOCK;
