@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Fixed
 - invalidation of inactive products
+### Added
+- Compatibility to Payone Plugin version 4
 
 ## [2.9.65] - 2018-29-01
 ### Fixed

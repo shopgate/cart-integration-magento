@@ -20,17 +20,16 @@
  */
 
 /**
- * Class Shopgate_Framework_Model_Payment_Payone_Pp
+ * This class is for the paypal mapping with Payone Plugin Version 4.*
  *
- * @author awesselburg <wesselburg@me.com>
- * @author Konstantin Kiritsenko <konstantin@kiritsenko.com>
+ * Class Shopgate_Framework_Model_Payment_Payone_Pp
  */
 class Shopgate_Framework_Model_Payment_Payone_Pp
     extends Shopgate_Framework_Model_Payment_Payone_Abstract
     implements Shopgate_Framework_Model_Payment_Interface
 {
-    const PAYONE_CORE_MODEL_CONFIG_IDENTIFIER = 'payone_wallet';
-    const PAYMENT_MODEL = 'payone_core/payment_method_wallet';
+    const PAYONE_CORE_MODEL_CONFIG_IDENTIFIER = 'payone_wallet_paypal_express';
+    const PAYMENT_MODEL = 'payone_core/payment_method_walletPaypalExpress';
     const PAYMENT_IDENTIFIER = ShopgateOrder::PAYONE_PP;
 
     /**
