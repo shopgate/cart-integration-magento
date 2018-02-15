@@ -78,9 +78,7 @@ class Shopgate_Framework_Model_Payment_Cc_Authn
                     $this->getOrder()->getPayment()->setAmountAuthorized($this->getOrder()->getGrandTotal());
                     $this->getOrder()->getPayment()->setBaseAmountAuthorized($this->getOrder()->getBaseGrandTotal());
                     $this->getOrder()->getPayment()->setIsTransactionPending(true);
-                    Mage::dispatchEvent('sales_order_place_before', array('order' => $this->getOrder()));
                     $this->_createTransaction($newTransactionType);
-                    Mage::dispatchEvent('sales_order_place_after', array('order' => $this->getOrder()));
 
                     if ($this->_transactionType == self::SHOPGATE_PAYMENT_STATUS_AUTH_CAPTURE) {
                         $this->getOrder()->getPayment()->setIsTransactionPending(false);
@@ -88,9 +86,7 @@ class Shopgate_Framework_Model_Payment_Cc_Authn
                     break;
                 case self::RESPONSE_CODE_HELD:
                     if ($this->_isOrderPendingReview()) {
-                        Mage::dispatchEvent('sales_order_place_before', array('order' => $this->getOrder()));
                         $this->_createTransaction($newTransactionType, array('is_transaction_fraud' => true));
-                        Mage::dispatchEvent('sales_order_place_after', array('order' => $this->getOrder()));
                         $this->getOrder()->getPayment()->setIsTransactionPending(true)->setIsFraudDetected(true);
                     }
                     break;
@@ -149,7 +145,10 @@ class Shopgate_Framework_Model_Payment_Cc_Authn
         foreach ($additionalInformation as $key => $value) {
             $transaction->setAdditionalInformation($key, $value);
         }
+
+        Mage::dispatchEvent('sales_order_place_before', array('order' => $this->getOrder()));
         $transaction->save();
+        Mage::dispatchEvent('sales_order_place_after', array('order' => $this->getOrder()));
     }
 
     /**
