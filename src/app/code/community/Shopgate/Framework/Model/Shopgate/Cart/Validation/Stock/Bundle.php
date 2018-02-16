@@ -49,7 +49,15 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Bundle
             $childProduct = $childItem->getProduct();
             /** @var Mage_CatalogInventory_Model_Stock_Item $childStock */
             $childStock = $childProduct->getStockItem();
-            if ($childStock->getManageStock() && !$childProduct->isSaleable() && !$childStock->getBackorders()) {
+            if (!$childProduct->isAvailable()) {
+                $isBuyable        = false;
+                $error            = array();
+                $error['type']    = ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND;
+                $error['message'] = ShopgateLibraryException::getMessageFor(
+                    ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND
+                );
+                $errors[]         = $error;
+            } elseif ($childStock->getManageStock() && !$childProduct->isSaleable() && !$childStock->getBackorders()) {
                 $isBuyable        = false;
                 $error            = array();
                 $error['type']    = ShopgateLibraryException::CART_ITEM_OUT_OF_STOCK;
@@ -57,11 +65,31 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Bundle
                     ShopgateLibraryException::CART_ITEM_OUT_OF_STOCK
                 );
                 $errors[]         = $error;
+            } elseif ($childStock->getManageStock()
+                      && !$childStock->checkQty($childItem->getQty())
+                      && !$childStock->getBackorders()
+            ) {
+                $isBuyable        = false;
+                $error            = array();
+                $error['type']    = ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE;
+                $error['message'] = ShopgateLibraryException::getMessageFor(
+                    ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE
+                );
+                $errors[]         = $error;
+                if ($qtyBuyable == null || $qtyBuyable > $childStock->getQty()) {
+                    $qtyBuyable = $childStock->getQty();
+                }
             } else {
-                if ($childStock->getManageStock()
-                    && !$childStock->checkQty($childItem->getQty())
-                    && !$childStock->getBackorders()
-                ) {
+                if (Mage::helper('shopgate/config')->getIsMagentoVersionLower1410()) {
+                    $checkIncrements = Mage::helper('shopgate')->checkQtyIncrements(
+                        $childStock,
+                        $childItem->getQty()
+                    );
+                } else {
+                    $checkIncrements = $childStock->checkQtyIncrements($childItem->getQty());
+                }
+
+                if ($childStock->getManageStock() && $checkIncrements->getHasError()) {
                     $isBuyable        = false;
                     $error            = array();
                     $error['type']    = ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE;
@@ -69,32 +97,10 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Bundle
                         ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE
                     );
                     $errors[]         = $error;
-                    if ($qtyBuyable == null || $qtyBuyable > $childStock->getQty()) {
-                        $qtyBuyable = $childStock->getQty();
-                    }
-                } else {
-                    if (Mage::helper('shopgate/config')->getIsMagentoVersionLower1410()) {
-                        $checkIncrements = Mage::helper('shopgate')->checkQtyIncrements(
-                            $childStock,
-                            $childItem->getQty()
-                        );
-                    } else {
-                        $checkIncrements = $childStock->checkQtyIncrements($childItem->getQty());
-                    }
-
-                    if ($childStock->getManageStock() && $checkIncrements->getHasError()) {
-                        $isBuyable        = false;
-                        $error            = array();
-                        $error['type']    = ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE;
-                        $error['message'] = ShopgateLibraryException::getMessageFor(
-                            ShopgateLibraryException::CART_ITEM_REQUESTED_QUANTITY_NOT_AVAILABLE
-                        );
-                        $errors[]         = $error;
-                        $stockItem->setQty(
-                            (int)($item->getQtyToAdd() / $stockItem->getQtyIncrements())
-                            * $stockItem->getQtyIncrements()
-                        );
-                    }
+                    $stockItem->setQty(
+                        (int)($item->getQtyToAdd() / $stockItem->getQtyIncrements())
+                        * $stockItem->getQtyIncrements()
+                    );
                 }
             }
         }
