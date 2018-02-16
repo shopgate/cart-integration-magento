@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - invalidation of inactive products
 ### Added
+- Firing the sales order place events when importing an order
 - Compatibility to Payone Plugin version 4
 
 ## [2.9.65] - 2018-29-01

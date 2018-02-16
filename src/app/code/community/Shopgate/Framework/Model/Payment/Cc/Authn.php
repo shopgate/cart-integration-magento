@@ -145,7 +145,10 @@ class Shopgate_Framework_Model_Payment_Cc_Authn
         foreach ($additionalInformation as $key => $value) {
             $transaction->setAdditionalInformation($key, $value);
         }
+
+        Mage::dispatchEvent('sales_order_place_before', array('order' => $this->getOrder()));
         $transaction->save();
+        Mage::dispatchEvent('sales_order_place_after', array('order' => $this->getOrder()));
     }
 
     /**
