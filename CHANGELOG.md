@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Fixed
 - invalidation of inactive products
+- invoice amount for Braintree orders in case of extended payment review
 ### Added
 - Firing the sales order place events when importing an order
 - Compatibility to Payone Plugin version 4
