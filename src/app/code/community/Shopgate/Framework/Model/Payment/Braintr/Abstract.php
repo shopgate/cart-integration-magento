@@ -23,8 +23,13 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
     extends Shopgate_Framework_Model_Payment_Abstract
     implements Shopgate_Framework_Model_Payment_Interface
 {
-    const ADVANCED_FRAUD_REVIEW = 'Review';
+    const ADVANCED_FRAUD_REVIEW  = 'Review';
     const ADVANCED_FRAUD_DECLINE = 'Decline';
+
+    /**
+     * @var bool
+     */
+    protected $isPaid = true;
 
     /**
      * @param Mage_Sales_Model_Quote $quote
@@ -136,6 +141,7 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
         if ($riskData['decision'] == self::ADVANCED_FRAUD_REVIEW
             || $riskData['decision'] == self::ADVANCED_FRAUD_DECLINE
         ) {
+            $this->isPaid = false;
             $payment->setIsTransactionPending(true);
 
             if ($riskData['decision'] == self::ADVANCED_FRAUD_DECLINE) {
@@ -203,8 +209,10 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
         }
 
         $invoice = $this->_getPaymentHelper()->createOrderInvoice($this->getOrder());
-        $invoice->setIsPaid(true);
-        $invoice->pay();
+        if ($this->isPaid) {
+            $invoice->setIsPaid(true);
+            $invoice->pay();
+        }
         $invoice->setTransactionId($paymentInfo['transaction_id']);
         $invoice->save();
         $this->getOrder()->addRelatedObject($invoice);
