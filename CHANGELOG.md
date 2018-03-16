@@ -5,10 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Products being exported twice in cart validation
+
 ## [2.9.66] - 2018-03-12
 ### Fixed
-- invalidation of inactive products
-- invoice amount for Braintree orders in case of extended payment review
+- Invalidation of inactive products
+- Invoice amount for Braintree orders in case of extended payment review
 ### Added
 - Firing the sales order place events when importing an order
 - Compatibility to Payone Plugin version 4
