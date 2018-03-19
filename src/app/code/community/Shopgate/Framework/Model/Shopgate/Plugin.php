@@ -585,7 +585,9 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
                 $product->getStockItem()->setSuppressCheckQtyIncrements(true);
             }
 
+            $quoteItemCount = 0;
             try {
+                $quoteItemCount = count($quote->getAllItems());
                 /** @var $quotItem Mage_Sales_Model_Quote_Item */
                 $quoteItem = $quote->addProduct($product, $buyObject);
                 if (!($quoteItem instanceof Varien_Object)) {
@@ -634,7 +636,9 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
                     ShopgateLogger::LOGTYPE_ERROR
                 );
                 $this->log($item->toArray(), ShopgateLogger::LOGTYPE_ERROR);
-                $orderInfo['error_message'] = $e->getMessage();
+                if (count($quote->getAllItems()) === $quoteItemCount) {
+                    $orderInfo['error_message'] = $e->getMessage();
+                }
                 $item->setInternalOrderInfo($this->jsonEncode($orderInfo));
 
                 // show detailed information about errors for failed add orders
