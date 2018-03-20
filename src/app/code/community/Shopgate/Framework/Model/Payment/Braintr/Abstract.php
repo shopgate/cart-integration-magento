@@ -19,11 +19,12 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
+
 class Shopgate_Framework_Model_Payment_Braintr_Abstract
     extends Shopgate_Framework_Model_Payment_Abstract
     implements Shopgate_Framework_Model_Payment_Interface
 {
-    const ADVANCED_FRAUD_REVIEW  = 'Review';
+    const ADVANCED_FRAUD_REVIEW = 'Review';
     const ADVANCED_FRAUD_DECLINE = 'Decline';
 
     /**
@@ -125,11 +126,11 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
     /**
      * @param Mage_Sales_Model_Order_Payment $payment
      * @param array                          $riskData
+     * @throws Mage_Core_Exception
      */
     protected function _handleFraud($payment, $riskData)
     {
-        if (!isset($riskData['id']) || !isset($riskData['decision'])) {
-
+        if (!isset($riskData['id'], $riskData['decision'])) {
             return;
         }
 
@@ -138,13 +139,13 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
 
         $this->_addBraintreeInfo($payment, $braintreeId, $riskData['id']);
 
-        if ($riskData['decision'] == self::ADVANCED_FRAUD_REVIEW
-            || $riskData['decision'] == self::ADVANCED_FRAUD_DECLINE
+        if ($riskData['decision'] === self::ADVANCED_FRAUD_REVIEW
+            || $riskData['decision'] === self::ADVANCED_FRAUD_DECLINE
         ) {
             $this->isPaid = false;
             $payment->setIsTransactionPending(true);
 
-            if ($riskData['decision'] == self::ADVANCED_FRAUD_DECLINE) {
+            if ($riskData['decision'] === self::ADVANCED_FRAUD_DECLINE) {
                 $payment->setIsFraudDetected(true);
             }
         }
@@ -155,6 +156,7 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
      * @param Mage_Sales_Model_Order_Payment $payment
      * @param string                         $braintreeId
      * @param string                         $riskDataId
+     * @throws Mage_Core_Exception
      */
     protected function _addBraintreeInfo($payment, $braintreeId, $riskDataId)
     {
@@ -162,9 +164,9 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
             $payment->setAdditionalInformation('kount_id', $riskDataId);
         }
 
-        /* @var $wrapper Gene_Braintree_Model_Wrapper_Braintree */
-        $wrapper = Mage::getModel('gene_braintree/wrapper_braintree')->init();
         try {
+            /* @var $wrapper Gene_Braintree_Model_Wrapper_Braintree */
+            $wrapper     = Mage::getModel('gene_braintree/wrapper_braintree')->init();
             $transaction = $wrapper->findTransaction($braintreeId);
         } catch (Exception $e) {
             ShopgateLogger::getInstance()->log(
@@ -194,17 +196,27 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
                 $payment->setAdditionalInformation($key, $infoData);
             }
         }
+
+        /**
+         * Add payment method token if it exists
+         */
+        if (isset($transaction->paymentInstrumentType)) {
+            $instrument = $this->snakeToCamelCase($transaction->paymentInstrumentType);
+            if (isset($transaction->{$instrument}['token'])) {
+                $payment->setAdditionalInformation('token', $transaction->{$instrument}['token']);
+            }
+        }
     }
 
     /**
      * Creates an invoice if it's paid
      *
      * @param array $paymentInfo
+     * @throws Exception
      */
     protected function _addInvoice($paymentInfo)
     {
         if (!$this->getShopgateOrder()->getIsPaid()) {
-
             return;
         }
 
@@ -228,7 +240,7 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
         $paymentInfo = $this->getShopgateOrder()->getPaymentInfos();
         $riskData    = $paymentInfo['risk_data'];
 
-        if ($riskData['decision'] == self::ADVANCED_FRAUD_REVIEW) {
+        if ($riskData['decision'] === self::ADVANCED_FRAUD_REVIEW) {
             $state   = $this->_getHelper()->getStateForStatus('payment_review');
             $status  = $this->_getHelper()->getStatusFromState($state);
             $comment = '[SHOPGATE] Setting order status to "Review" because of pending fraud detection';
@@ -238,5 +250,19 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
         }
 
         return parent::setOrderStatus($magentoOrder);
+    }
+
+    /**
+     * Converts credit_cart to creditCard
+     *
+     * @param string $data - string to convert to camelcase, with first lower case
+     *
+     * @return string
+     */
+    private function snakeToCamelCase($data)
+    {
+        $replace = ucwords(str_replace('_', ' ', $data));
+
+        return str_replace(' ', '', lcfirst($replace));
     }
 }
