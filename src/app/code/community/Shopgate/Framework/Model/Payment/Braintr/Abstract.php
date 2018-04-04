@@ -23,8 +23,9 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
     extends Shopgate_Framework_Model_Payment_Abstract
     implements Shopgate_Framework_Model_Payment_Interface
 {
-    const ADVANCED_FRAUD_REVIEW  = 'Review';
-    const ADVANCED_FRAUD_DECLINE = 'Decline';
+	const ADVANCED_FRAUD_REVIEW              = 'Review';
+	const ADVANCED_FRAUD_DECLINE             = 'Decline';
+	const SHOPGATE_PAYMENT_STATUS_AUTHORIZED = 'authorized';
 
     /**
      * @var bool
@@ -203,10 +204,12 @@ class Shopgate_Framework_Model_Payment_Braintr_Abstract
      */
     protected function _addInvoice($paymentInfo)
     {
-        if (!$this->getShopgateOrder()->getIsPaid()) {
+	    if (!$this->getShopgateOrder()->getIsPaid()
+	         || $paymentInfo['status'] === self::SHOPGATE_PAYMENT_STATUS_AUTHORIZED
+	    ) {
 
-            return;
-        }
+		    return;
+	    }
 
         $invoice = $this->_getPaymentHelper()->createOrderInvoice($this->getOrder());
         if ($this->isPaid) {
