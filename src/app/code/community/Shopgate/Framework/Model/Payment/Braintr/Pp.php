@@ -19,9 +19,10 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
+
 class Shopgate_Framework_Model_Payment_Braintr_Pp extends Shopgate_Framework_Model_Payment_Braintr_Abstract
 {
-    const PAYMENT_IDENTIFIER = 'BRAINTR_PP'; // todo replace with ShopgateOrder::BRAINTR_PP
+    const PAYMENT_IDENTIFIER = ShopgateOrder::BRAINTR_PP;
     const MODULE_CONFIG = 'Gene_Braintree';
     const PAYMENT_MODEL = 'gene_braintree/paymentmethod_paypal';
     const XML_CONFIG_ENABLED = 'payment/gene_braintree_paypal/active';
@@ -31,6 +32,9 @@ class Shopgate_Framework_Model_Payment_Braintr_Pp extends Shopgate_Framework_Mod
      * @param Mage_Sales_Model_Order $order
      *
      * @return Mage_Sales_Model_Order
+     * @throws Mage_Core_Exception
+     * @throws Varien_Exception
+     * @throws Exception
      */
     public function manipulateOrderWithPaymentData($order)
     {
@@ -38,7 +42,10 @@ class Shopgate_Framework_Model_Payment_Braintr_Pp extends Shopgate_Framework_Mod
         $paymentInfo   = $shopgateOrder->getPaymentInfos();
         $payment       = $this->getOrder()->getPayment();
 
-        $payment->setLastTransId($paymentInfo['transaction_id']);
+        $payment->setCcTransId($paymentInfo['transaction_id'])
+            ->setLastTransId($paymentInfo['transaction_id'])
+            ->setTransactionId($paymentInfo['transaction_id'])
+            ->setIsTransactionClosed(0);
 
         $this->_handleFraud($payment, $paymentInfo['risk_data']);
         $this->_addInvoice($paymentInfo);

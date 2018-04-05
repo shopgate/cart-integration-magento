@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - Products being exported twice in cart validation
 - Authorized Braintree orders are not directly invoiced on order import anymore
+- Auth/Captured Braintree orders can now be properly captured from Magento
 
 ## [2.9.66] - 2018-03-12
 ### Fixed
