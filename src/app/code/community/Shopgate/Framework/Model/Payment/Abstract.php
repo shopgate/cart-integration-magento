@@ -304,11 +304,15 @@ class Shopgate_Framework_Model_Payment_Abstract
         if (!Mage::helper('shopgate/config')->getIsMagentoVersionLower15()) {
             $service->submitAll();
 
-            return $this->setOrder($service->getOrder());
+            $order = $this->setOrder($service->getOrder());
         } else {
             /** @noinspection PhpDeprecationInspection */
-            return $this->setOrder($service->submit());
+            $order = $this->setOrder($service->submit());
         }
+
+        Mage::dispatchEvent('checkout_submit_all_after', array('order' => $order, 'quote' => $quote));
+
+        return $order;
     }
 
     /**
