@@ -311,7 +311,6 @@ class Shopgate_Framework_Model_Payment_Abstract
         }
 
         Mage::dispatchEvent('checkout_submit_all_after', array('order' => $order, 'quote' => $quote));
-        Mage::dispatchEvent('sales_model_service_quote_submit_after', array('order' => $order, 'quote' => $quote));
 
         return $order;
     }
