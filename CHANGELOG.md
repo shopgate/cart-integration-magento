@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.9.67] - 2018-04-17
 ### Fixed
 - Products being exported twice in cart validation
 - Authorized Braintree orders are not directly invoiced on order import anymore
@@ -1288,7 +1290,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.67...HEAD
+[2.9.66]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...2.9.67
 [2.9.66]: https://github.com/shopgate/cart-integration-magento/compare/2.9.65...2.9.66
 [2.9.65]: https://github.com/shopgate/cart-integration-magento/compare/2.9.64...2.9.65
 [2.9.64]: https://github.com/shopgate/cart-integration-magento/compare/2.9.63...2.9.64
