@@ -3,11 +3,11 @@
   "description": "Integrates the Magento 1 shopping cart solution with Shopgate",
   "homepage": "https://github.com/shopgate/cart-integration-magento",
   "license": "Apache-2.0",
+  "type": "magento-module",
   "config": {
     "platform": {
       "php": "5.3.3"
-    },
-    "vendor-dir": "vendor"
+    }
   },
   "authors": [
     {
@@ -21,9 +21,6 @@
   },
   "require-dev": {
     "phpunit/phpunit": "4.8.*"
-  },
-  "suggests": {
-    "magento-hackathon/magento-composer-installer": "~3.0.0"
   },
   "keywords": [
     "mobile",
