@@ -629,8 +629,8 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
                 if (!is_null($productWeight)) {
                     $quoteItem->setWeight($productWeight);
 
-                    foreach ($quoteItem->getChildren() as $children) {
-                        $children->setWeight($productWeight);
+                    foreach ($quoteItem->getChildren() as $child) {
+                        $child->setWeight($productWeight);
                     }
                 }
                 $quoteItem->setRowWeight($quoteItem->getWeight() * $quoteItem->getQty());
