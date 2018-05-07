@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Fixed
 - Missing shipping methods in cart validation for configurable products
+- Missing shipping costs
 
 ## [2.9.67] - 2018-04-17
 ### Fixed
@@ -1293,7 +1294,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - bug-fixes
 
 [Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.67...HEAD
-[2.9.66]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...2.9.67
+[2.9.67]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...2.9.67
 [2.9.66]: https://github.com/shopgate/cart-integration-magento/compare/2.9.65...2.9.66
 [2.9.65]: https://github.com/shopgate/cart-integration-magento/compare/2.9.64...2.9.65
 [2.9.64]: https://github.com/shopgate/cart-integration-magento/compare/2.9.63...2.9.64

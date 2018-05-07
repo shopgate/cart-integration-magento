@@ -329,7 +329,7 @@ class Shopgate_Framework_Helper_Coupon extends Mage_Core_Helper_Abstract
             $couponInfo['coupon_id'] = $mageCoupon->getId();
             $couponInfo['rule_id']   = $mageRule->getId();
 
-            $externalCoupon->setIsFreeShipping((bool)$mageQuote->getShippingAddress()->getFreeShipping());
+            $externalCoupon->setIsFreeShipping($this->shippingShouldBeFree($mageQuote));
             $externalCoupon->setInternalInfo(Mage::helper('shopgate')->getConfig()->jsonEncode($couponInfo));
 
             if ($useTaxClasses) {
