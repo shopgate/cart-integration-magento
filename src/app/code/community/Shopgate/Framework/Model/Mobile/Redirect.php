@@ -475,7 +475,7 @@ class Shopgate_Framework_Model_Mobile_Redirect extends Mage_Core_Model_Abstract
     {
         $builder     = new ShopgateBuilder($this->_config);
         $userAgent   = Mage::helper('core/http')->getHttpUserAgent();
-        $redirectObj = $builder->buildMobileRedirect($userAgent, $_GET, $_COOKIE);
+        $redirectObj = $builder->buildMobileRedirect($userAgent, Mage::app()->getRequest()->getParams(), $_COOKIE);
 
         foreach ($redirectList as $redirectKey => $redirectValue) {
             if ($redirectValue) {

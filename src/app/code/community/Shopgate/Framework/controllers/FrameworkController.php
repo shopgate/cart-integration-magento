@@ -83,17 +83,21 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
             $plugin  = Mage::getModel('shopgate/shopgate_plugin', $builder);
             $plugin->handleRequest(Mage::app()->getRequest()->getParams());
         } catch (ShopgateLibraryException $e) {
+            $traceId = Mage::app()->getRequest()->getParam('trace_id');
             $response = new ShopgatePluginApiResponseAppJson(
-                (isset($_REQUEST['trace_id']) ? $_REQUEST['trace_id'] : '')
+                (isset($traceId) ? $traceId : '')
             );
             $response->markError($e->getCode(), $e->getMessage());
             $response->setData(array());
             $response->send();
         } catch (Exception $e) {
             Mage::logException($e);
-            echo 'ERROR';
+            $response = Mage::helper('core')->jsonEncode(array(
+                'error' => ShopgateLibraryException::UNKNOWN_ERROR_CODE,
+                'error_text' => $e->getMessage()
+            ));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody($response);
         }
-
-        exit;
     }
 }

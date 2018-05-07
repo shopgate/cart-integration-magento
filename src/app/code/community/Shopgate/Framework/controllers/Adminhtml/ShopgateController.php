@@ -44,7 +44,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
         $this->getResponse()->setRedirect($redirect);
         $this->getResponse()->sendResponse();
-        exit;
     }
 
     /**
@@ -90,7 +89,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
         $this->getResponse()->setRedirect($redirect);
         $this->getResponse()->sendResponse();
-        exit;
     }
 
     /**
@@ -105,7 +103,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
         $this->getResponse()->setRedirect($redirect);
         $this->getResponse()->sendResponse();
-        exit;
     }
 
     /**
@@ -151,7 +148,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
         $this->getResponse()->setRedirect($redirect);
         $this->getResponse()->sendResponse();
-        exit;
     }
 
     /**
@@ -177,7 +173,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
             $this->getResponse()->setRedirect($redirect);
             $this->getResponse()->sendResponse();
-            exit;
         }
 
         $this->loadLayout();
@@ -257,7 +252,6 @@ class Shopgate_Framework_Adminhtml_ShopgateController extends Mage_Adminhtml_Con
 
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($responseData));
         $this->getResponse()->sendResponse();
-        exit;
     }
 
     /**
