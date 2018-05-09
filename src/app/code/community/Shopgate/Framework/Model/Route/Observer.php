@@ -21,14 +21,18 @@
  */
 class Shopgate_Framework_Model_Route_Observer
 {
+    const SHOPGATE_CLOUDAPI_MODULE_NAME = 'Shopgate_Cloudapi';
+
     /**
      * Check if CloudApi plugin is active
      */
     public function execute()
     {
-        if (Mage::helper('core')->isModuleEnabled('Shopgate_Cloudapi')) {
-            Mage::getConfig()->setNode('frontend/routers/shopgate/args/modules/shopgate_cloudapi',
-                'Shopgate_Cloudapi');
+        if (Mage::helper('core')->isModuleEnabled(self::SHOPGATE_CLOUDAPI_MODULE_NAME)) {
+            Mage::getConfig()->setNode(
+                'frontend/routers/shopgate/args/modules/shopgate_cloudapi',
+                self::SHOPGATE_CLOUDAPI_MODULE_NAME
+            );
         }
     }
 }
