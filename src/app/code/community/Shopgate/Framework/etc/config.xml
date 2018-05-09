@@ -226,6 +226,15 @@
                 </observers>
             </adminhtml_init_system_config>
 
+            <controller_front_init_before>
+                <observers>
+                    <init_v2_controller>
+                        <type>model</type>
+                        <class>shopgate/route_observer</class>
+                        <method>execute</method>
+                    </init_v2_controller>
+                </observers>
+            </controller_front_init_before>
         </events>
         <payment>
             <groups>

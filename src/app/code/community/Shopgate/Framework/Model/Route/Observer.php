@@ -19,12 +19,16 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-
-/**
- * The controller is needed only in the Cloud API integration, unfortunately
- * the /shopgate route is already used by Framework plugin.
- */
-class Shopgate_Framework_V2Controller extends Mage_Core_Controller_Front_Action
+class Shopgate_Framework_Model_Route_Observer
 {
+    /**
+     * Check if CloudApi plugin is active
+     */
+    public function execute()
+    {
+        if (Mage::helper('core')->isModuleEnabled('Shopgate_Cloudapi')) {
+            Mage::getConfig()->setNode('frontend/routers/shopgate/args/modules/shopgate_cloudapi',
+                'Shopgate_Cloudapi');
+        }
+    }
 }
-
