@@ -38,6 +38,7 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
             Mage::app()->getRequest()->setParam('action', self::RECEIVE_AUTH_ACTION);
         }
 
+        $this->setFlag('', self::FLAG_NO_DISPATCH, true);
         $this->_run();
     }
 
@@ -67,6 +68,7 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
         define('SHOPGATE_PLUGIN_VERSION', Mage::helper('shopgate')->getModuleVersion());
 
         try {
+            $this->getResponse()->clearHeaders();
             $config = Mage::helper('shopgate/config')->getConfig();
             if (!Mage::getStoreConfig(Shopgate_Framework_Model_Config::XML_PATH_SHOPGATE_ACTIVE)
                 && Mage::app()->getRequest()->getParam('action') != self::RECEIVE_AUTH_ACTION
