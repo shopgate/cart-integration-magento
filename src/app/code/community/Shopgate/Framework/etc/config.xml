@@ -233,6 +233,12 @@
                         <class>shopgate/route_observer</class>
                         <method>execute</method>
                     </init_v2_controller>
+
+                    <backward_compatibility>
+                        <type>model</type>
+                        <class>shopgate/compatibility_observer</class>
+                        <method>execute</method>
+                    </backward_compatibility>
                 </observers>
             </controller_front_init_before>
         </events>
