@@ -230,13 +230,13 @@
                 <observers>
                     <init_v2_controller>
                         <type>model</type>
-                        <class>shopgate/route_observer</class>
+                        <class>shopgate/observer_v2</class>
                         <method>execute</method>
                     </init_v2_controller>
 
                     <cms_map_compatibility>
                         <type>model</type>
-                        <class>shopgate/compatibility_observer</class>
+                        <class>shopgate/observer_cmsMap</class>
                         <method>execute</method>
                     </cms_map_compatibility>
                 </observers>

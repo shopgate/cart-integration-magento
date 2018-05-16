@@ -19,19 +19,17 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-class Shopgate_Framework_Model_Route_Observer
+class Shopgate_Framework_Model_Observer_CmsMap
 {
-    const SHOPGATE_CLOUDAPI_MODULE_NAME = 'Shopgate_Cloudapi';
-
     /**
-     * Check if CloudApi plugin is active
+     * Check if Magento version is below 1.5
      */
     public function execute()
     {
-        if (Mage::helper('core')->isModuleEnabled(self::SHOPGATE_CLOUDAPI_MODULE_NAME)) {
+        if (Mage::helper('shopgate/config')->getIsMagentoVersionLower15()) {
             Mage::getConfig()->setNode(
-                'frontend/routers/shopgate/args/modules/shopgate_cloudapi',
-                self::SHOPGATE_CLOUDAPI_MODULE_NAME
+                'global/blocks/shopgate/rewrite/cmsMap',
+                'Shopgate_Framework_Block_CmsMap1400'
             );
         }
     }
