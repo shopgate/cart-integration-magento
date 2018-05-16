@@ -234,11 +234,11 @@
                         <method>execute</method>
                     </init_v2_controller>
 
-                    <backward_compatibility>
+                    <cms_map_compatibility>
                         <type>model</type>
                         <class>shopgate/compatibility_observer</class>
                         <method>execute</method>
-                    </backward_compatibility>
+                    </cms_map_compatibility>
                 </observers>
             </controller_front_init_before>
         </events>

@@ -22,7 +22,7 @@
 class Shopgate_Framework_Model_Compatibility_Observer
 {
     /**
-     * Check if CloudApi plugin is active
+     * Check if Magento version is below 1.5
      */
     public function execute()
     {
