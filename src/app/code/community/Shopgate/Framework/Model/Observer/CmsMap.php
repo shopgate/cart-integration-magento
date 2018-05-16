@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright Shopgate Inc.
  *
@@ -18,13 +19,18 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-
-if (Mage::helper('shopgate/config')->getIsMagentoVersionLower15()) {
-    class Shopgate_Framework_Block_CmsMapRouter extends Shopgate_Framework_Block_CmsMap1400
+class Shopgate_Framework_Model_Observer_CmsMap
+{
+    /**
+     * Check if Magento version is below 1.5
+     */
+    public function execute()
     {
-    }
-} else {
-    class Shopgate_Framework_Block_CmsMapRouter extends Shopgate_Framework_Block_CmsMap
-    {
+        if (Mage::helper('shopgate/config')->getIsMagentoVersionLower15()) {
+            Mage::getConfig()->setNode(
+                'global/blocks/shopgate/rewrite/cmsMap',
+                'Shopgate_Framework_Block_CmsMap1400'
+            );
+        }
     }
 }

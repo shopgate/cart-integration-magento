@@ -38,6 +38,7 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
             Mage::app()->getRequest()->setParam('action', self::RECEIVE_AUTH_ACTION);
         }
 
+        $this->setFlag('', self::FLAG_NO_DISPATCH, true);
         $this->_run();
     }
 
@@ -67,6 +68,7 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
         define('SHOPGATE_PLUGIN_VERSION', Mage::helper('shopgate')->getModuleVersion());
 
         try {
+            $this->getResponse()->clearHeaders();
             $config = Mage::helper('shopgate/config')->getConfig();
             if (!Mage::getStoreConfig(Shopgate_Framework_Model_Config::XML_PATH_SHOPGATE_ACTIVE)
                 && Mage::app()->getRequest()->getParam('action') != self::RECEIVE_AUTH_ACTION
@@ -83,17 +85,21 @@ class Shopgate_Framework_FrameworkController extends Mage_Core_Controller_Front_
             $plugin  = Mage::getModel('shopgate/shopgate_plugin', $builder);
             $plugin->handleRequest(Mage::app()->getRequest()->getParams());
         } catch (ShopgateLibraryException $e) {
+            $traceId = Mage::app()->getRequest()->getParam('trace_id');
             $response = new ShopgatePluginApiResponseAppJson(
-                (isset($_REQUEST['trace_id']) ? $_REQUEST['trace_id'] : '')
+                (isset($traceId) ? $traceId : '')
             );
             $response->markError($e->getCode(), $e->getMessage());
             $response->setData(array());
             $response->send();
         } catch (Exception $e) {
             Mage::logException($e);
-            echo 'ERROR';
+            $response = Mage::helper('core')->jsonEncode(array(
+                'error' => ShopgateLibraryException::UNKNOWN_ERROR_CODE,
+                'error_text' => $e->getMessage()
+            ));
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody($response);
         }
-
-        exit;
     }
 }

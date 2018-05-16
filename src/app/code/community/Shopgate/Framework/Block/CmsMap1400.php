@@ -19,13 +19,8 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-class Shopgate_Framework_Block_CmsMap1400 extends Mage_Adminhtml_Block_System_Config_Form_Field_Array_Abstract
+class Shopgate_Framework_Block_CmsMap1400 extends Shopgate_Framework_Block_CmsMap
 {
-    /** @var Mage_Core_Block_Abstract | Shopgate_Framework_Block_Adminhtml_Form_CmsPages */
-    protected $_itemRenderer;
-    const MAGE_PAGE_KEY = 'cms_page';
-    const SG_PAGE_KEY = 'shopgate_page_key';
-
     /**
      * Rows cache
      *
@@ -38,31 +33,6 @@ class Shopgate_Framework_Block_CmsMap1400 extends Mage_Adminhtml_Block_System_Co
         $this->_prepareToRender();
 
         parent::__construct();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function _prepareToRender()
-    {
-        $helper = Mage::helper('shopgate');
-        $this->addColumn(
-            self::MAGE_PAGE_KEY,
-            array(
-                'label'    => $helper->__('Cms Page'),
-                'renderer' => $this->_getRenderer(),
-            )
-        );
-        $this->addColumn(
-            self::SG_PAGE_KEY,
-            array(
-                'label' => $helper->__('Shopgate URL key'),
-                'style' => 'width:150px',
-            )
-        );
-
-        $this->_addAfter       = false;
-        $this->_addButtonLabel = $helper->__('Add Page');
     }
 
     /**

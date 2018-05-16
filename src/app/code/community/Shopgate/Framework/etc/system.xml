@@ -169,7 +169,7 @@
                         </disable_redirect_categories>
                         <cms_map translate="label comment">
                             <label>Map CMS Pages for redirect</label>
-                            <frontend_model>shopgate/cmsMapRouter</frontend_model>
+                            <frontend_model>shopgate/cmsMap</frontend_model>
                             <backend_model>shopgate/system_config_backend_serialized_cmsMap</backend_model>
                             <sort_order>150</sort_order>
                             <show_in_default>0</show_in_default>
