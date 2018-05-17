@@ -19,21 +19,4 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-class Shopgate_Framework_Model_Cataloginventory_Stock extends Shopgate_Framework_Model_Cataloginventory_Stock_Abstract
-{
-    /**
-     * @param Varien_Object $item
-     * @return $this|Mage_CatalogInventory_Model_Stock
-     */
-    public function registerItemSale(Varien_Object $item)
-    {
-        if (Mage::helper("shopgate")->isShopgateApiRequest()
-            && Mage::helper("shopgate/config")->getIsMagentoVersionLower15()
-        ) {
-            return $this;
-        }
-
-        return parent::registerItemSale($item);
-    }
-
-}
+class Shopgate_Framework_Model_Cataloginventory_Stock_Abstract extends Mage_CatalogInventory_Model_Stock {}

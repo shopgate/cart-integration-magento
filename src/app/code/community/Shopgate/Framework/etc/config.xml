@@ -239,6 +239,12 @@
                         <class>shopgate/observer_cmsMap</class>
                         <method>execute</method>
                     </cms_map_compatibility>
+
+                    <bubble_stock_movement_compatibility>
+                        <type>model</type>
+                        <class>shopgate/observer_stock</class>
+                        <method>execute</method>
+                    </bubble_stock_movement_compatibility>
                 </observers>
             </controller_front_init_before>
         </events>
