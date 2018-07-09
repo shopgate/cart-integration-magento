@@ -34,7 +34,7 @@ jobs:
       provider: releases
       api_key:
         secure: exX7q09MPaDXz0k39dks9+hUDaeTTQHKokobjXlDNb8vntqiua25mq8k7HTmTIaay7awV67b3rDyuvI7nPP71e2PZXOn1BcqrNC9K1cy6MDLxJuUYhohuuINPAVV4fkcGVpbvFfyEdui+nFod+502/0q6x8Bjrx4drQMqzq59BO+07NYOspjZyzQ/Q7lwCvDHxc1o40FmCoVttihufaRTM00qjhhM+SzHvyYdllfGRmB8Vd9hsAysWbDSmEyyZVhzXauzP8RArIIeYF8KRIlKmxUUdt2HN5/mV4F8kKSq93x3MNR0P1znag9Z/VJ0F3y5z1TxFLPEkyvBtv0ocFEZyDzIBZC/Q67F0XMlj2FvgkWTsiEQN+GC1j0KDKWRP4hlZw93gDEsxqDWyiy01gsoLwp5ET4HO2NAncTBQCk8HBUXSArdkzRDgCqsj7w4yGUieJxvk8wH54GKOvr5E3lq+HkrVhX93/elPzdc1Px3SLwknv46x/yShg+ZrC52hRyT6ebB/h8ycTldrWH8kV/fu/GBE8IfXrI9fZR/+DWCcGByPhLxe1OUxcelHF8xeq/5sSeN9euu7uMkelL3h71sB2HOX7CxsAu9w7G6AGRXdTN9lOOIz9R/tqkhLGZrL/ZCQGZzgUcPccCqh51Nq7JCkOGgKRtNZSU/+70GHmTOms=
-      file: shopgate-magento-integration.tgz
+      file: shopgate_module-${TRAVIS_TAG}.tgz
       skip_cleanup: true
       on:
         tags: true
