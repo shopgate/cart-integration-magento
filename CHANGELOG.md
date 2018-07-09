@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.9.69] - 2018-07-09
 ### Fixed
 - Compatibility with Magento Marketplace
 
@@ -1297,7 +1299,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.68...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.69...HEAD
+[2.9.69]: https://github.com/shopgate/cart-integration-magento/compare/2.9.68...2.9.69
 [2.9.68]: https://github.com/shopgate/cart-integration-magento/compare/2.9.67...2.9.68
 [2.9.67]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...2.9.67
 [2.9.66]: https://github.com/shopgate/cart-integration-magento/compare/2.9.65...2.9.66

@@ -27,4 +27,3 @@
 class Shopgate_Framework_V2Controller extends Mage_Core_Controller_Front_Action
 {
 }
-
