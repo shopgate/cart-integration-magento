@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm shopgate-magento-integration.tgz
+rm shopgate_module-*.tgz
 rm -r vendor
 
 composer install -vvv --no-dev
@@ -24,3 +24,7 @@ rsync -av release/magento_package.php release/magento/magento_package.php
 cd release/magento/
 chmod -R 777 var
 php magento_package.php
+
+cd ../../
+rm -r release/magento
+rm -r vendor
