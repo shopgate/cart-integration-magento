@@ -19,22 +19,27 @@
  * @copyright Shopgate Inc
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
-class Shopgate_Framework_Model_System_Config_Source_Cart_Types
+class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
 {
-    /**
-     * @return array
-     */
-    public function toOptionArray()
+    const VALUE_MOBILESITE = 'mobilesite';
+    const VALUE_APP        = 'app';
+    const TYPES_APP        = array(
+        ShopgateClient::TYPE_ANDROIDPHONEAPP,
+        ShopgateClient::TYPE_ANDROIDTABLETAPP,
+        ShopgateClient::TYPE_IPADAPP,
+        ShopgateClient::TYPE_IPHONEAPP
+    );
+
+    public function getMagentoCartTypeFromClient(ShopgateClient $shopgateClient)
     {
-        return array(
-            array(
-                'value' => Shopgate_Framework_Helper_Client::VALUE_MOBILESITE,
-                'label' => Mage::helper('shopgate')->__('Shopgate Mobile Site'),
-            ),
-            array(
-                'value' => Shopgate_Framework_Helper_Client::VALUE_APP,
-                'label' => Mage::helper('shopgate')->__('Shopgate Mobile App'),
-            )
-        );
+        $shopgateType = $shopgateClient->getType();
+        if ($shopgateType === ShopgateClient::TYPE_MOBILESITE) {
+            return self::VALUE_MOBILESITE;
+        }
+        if (in_array($shopgateType, self::TYPES_APP)) {
+            return self::VALUE_APP;
+        }
+
+        return '';
     }
 }
