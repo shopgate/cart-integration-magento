@@ -478,10 +478,10 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
 
             return;
         }
-        $helper = $this->_getClientHelper();
-        $type = $helper->getMagentoCartTypeFromClient($order->getClient());
-        $defaultType = Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE;
-        $quote->getShippingAddress()->setData($defaultType, $type);
+        $quote->getShippingAddress()->setData(
+            Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE,
+            $this->_getClientHelper()->getMagentoCartTypeFromClient($order->getClient())
+        );
     }
 
     /**

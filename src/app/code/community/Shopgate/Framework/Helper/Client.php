@@ -34,9 +34,11 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
     {
         $shopgateType = $shopgateClient->getType();
         if ($shopgateType === ShopgateClient::TYPE_MOBILESITE) {
+
             return self::VALUE_MOBILESITE;
         }
         if (in_array($shopgateType, self::TYPES_APP)) {
+
             return self::VALUE_APP;
         }
 
