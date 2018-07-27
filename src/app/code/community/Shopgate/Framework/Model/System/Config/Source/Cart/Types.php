@@ -28,12 +28,12 @@ class Shopgate_Framework_Model_System_Config_Source_Cart_Types
     {
         return array(
             array(
-                'value' => Shopgate_Framework_Helper_Client::VALUE_MOBILESITE,
-                'label' => Mage::helper('shopgate')->__('Shopgate Mobile Site'),
-            ),
-            array(
                 'value' => Shopgate_Framework_Helper_Client::VALUE_APP,
                 'label' => Mage::helper('shopgate')->__('Shopgate Mobile App'),
+            ),
+            array(
+                'value' => Shopgate_Framework_Helper_Client::VALUE_MOBILESITE,
+                'label' => Mage::helper('shopgate')->__('Shopgate Mobile Site'),
             )
         );
     }

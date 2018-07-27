@@ -216,6 +216,16 @@
                 </observers>
             </sales_order_place_after>
 
+            <sales_quote_address_collect_totals_before>
+                <observers>
+                    <copy_shopgate_client_to_shipping_address>
+                        <type>singleton</type>
+                        <class>shopgate/observer</class>
+                        <method>setClientOnAddress</method>
+                    </copy_shopgate_client_to_shipping_address>
+                </observers>
+            </sales_quote_address_collect_totals_before>
+
             <adminhtml_init_system_config>
                 <observers>
                     <add_developer_config>

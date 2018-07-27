@@ -478,7 +478,7 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
 
             return;
         }
-        $quote->getShippingAddress()->setData(
+        $quote->setData(
             Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE,
             $this->_getClientHelper()->getMagentoCartTypeFromClient($order->getClient())
         );
