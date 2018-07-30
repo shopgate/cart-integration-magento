@@ -738,7 +738,7 @@ class Shopgate_Framework_Model_Observer
     }
 
     /**
-     * copy client type from the persistent quote to the quote address before sales rules are validated
+     * Copy client type from the persistent quote to the quote address before sales rules are validated
      *
      * @param Varien_Event_Observer $observer
      */
