@@ -480,7 +480,7 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
         }
         $quote->setData(
             Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE,
-            $this->_getClientHelper()->getMagentoCartTypeFromClient($order->getClient())
+            $this->getClientHelper()->getMagentoCartTypeFromClient($order->getClient())
         );
     }
 
@@ -2292,7 +2292,7 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
     /**
      * @return Shopgate_Framework_Helper_Client
      */
-    protected function _getClientHelper()
+    protected function getClientHelper()
     {
         return Mage::helper('shopgate/client');
     }

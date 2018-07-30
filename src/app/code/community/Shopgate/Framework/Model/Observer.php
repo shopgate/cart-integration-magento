@@ -745,7 +745,7 @@ class Shopgate_Framework_Model_Observer
     public function setClientOnAddress(Varien_Event_Observer $observer)
     {
         /** @var Mage_Sales_Model_Quote_Address $address */
-        $address  = $observer->getData('quote_address');
+        $address       = $observer->getData('quote_address');
         $quoteCartType = $address->getQuote()->getData(Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE);
         $address->setData(Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE, $quoteCartType);
     }

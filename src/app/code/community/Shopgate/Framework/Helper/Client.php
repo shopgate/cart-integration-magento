@@ -23,7 +23,8 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
 {
     const VALUE_MOBILESITE = 'mobilesite';
     const VALUE_APP        = 'app';
-    const TYPES_APP        = array(
+
+    private $typesApp = array(
         ShopgateClient::TYPE_ANDROIDPHONEAPP,
         ShopgateClient::TYPE_ANDROIDTABLETAPP,
         ShopgateClient::TYPE_IPADAPP,
@@ -34,11 +35,9 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
     {
         $shopgateType = $shopgateClient->getType();
         if ($shopgateType === ShopgateClient::TYPE_MOBILESITE) {
-
             return self::VALUE_MOBILESITE;
         }
-        if (in_array($shopgateType, self::TYPES_APP)) {
-
+        if (in_array($shopgateType, $this->typesApp)) {
             return self::VALUE_APP;
         }
 
