@@ -31,6 +31,11 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
         ShopgateClient::TYPE_IPHONEAPP
     );
 
+    /**
+     * @param ShopgateClient $shopgateClient
+     *
+     * @return string
+     */
     public function getMagentoCartTypeFromClient(ShopgateClient $shopgateClient)
     {
         $shopgateType = $shopgateClient->getType();

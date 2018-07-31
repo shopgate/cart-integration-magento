@@ -65,7 +65,6 @@ class Shopgate_Framework_Model_SalesRule_Condition extends Mage_Rule_Model_Condi
     public function getInputType()
     {
         if ($this->getAttribute() == self::CART_TYPE) {
-
             return self::DEFAULT_IDENTIFIER_SELECT;
         }
 
@@ -78,7 +77,6 @@ class Shopgate_Framework_Model_SalesRule_Condition extends Mage_Rule_Model_Condi
     public function getValueElementType()
     {
         if ($this->getAttribute() == self::CART_TYPE) {
-
             return self::DEFAULT_IDENTIFIER_SELECT;
         }
 
