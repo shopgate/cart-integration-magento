@@ -23,6 +23,8 @@ class Shopgate_Framework_Model_SalesRule_Condition extends Mage_Rule_Model_Condi
 {
     /**
      * Define identifier for cart type
+     *
+     * This constant is also defined in the clouapi plugin and has to have the same value
      */
     const CART_TYPE = 'shopgate_cart_type';
 
