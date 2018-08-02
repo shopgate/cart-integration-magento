@@ -939,6 +939,10 @@ class Shopgate_Framework_Model_Observer
      */
     public function addConditionToSalesRule(Varien_Event_Observer $observer)
     {
+        if (Mage::getConfig()->getModuleConfig('Shopgate_Cloudapi')->is('active', 'true')) {
+            return $observer;
+        }
+
         $additional = $observer->getAdditional();
         $conditions = (array)$additional->getConditions();
 

@@ -13,7 +13,7 @@ rm -f release/magento1702.zip
 wget -O release/magento1702.zip http://files.shopgate.com/magento/magento1702.zip
 
 rm -rf release/magento
-unzip release/magento1702.zip -d release/magento
+unzip release/magento1702.zip -d release/magento > /dev/null
 
 rsync -av src/ release/magento
 rsync -av CHANGELOG.md release/magento/app/code/community/Shopgate/Framework/CHANGELOG.md

@@ -32,6 +32,8 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
     );
 
     /**
+     * Identify app or mobile site
+     *
      * @param ShopgateClient $shopgateClient
      *
      * @return string
