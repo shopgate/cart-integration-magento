@@ -738,19 +738,6 @@ class Shopgate_Framework_Model_Observer
     }
 
     /**
-     * Copy client type from the persistent quote to the quote address before sales rules are validated
-     *
-     * @param Varien_Event_Observer $observer
-     */
-    public function setClientOnAddress(Varien_Event_Observer $observer)
-    {
-        /** @var Mage_Sales_Model_Quote_Address $address */
-        $address       = $observer->getData('quote_address');
-        $quoteCartType = $address->getQuote()->getData(Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE);
-        $address->setData(Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE, $quoteCartType);
-    }
-
-    /**
      * Adds extra parameters for developers
      *
      * @param Varien_Event_Observer $observer

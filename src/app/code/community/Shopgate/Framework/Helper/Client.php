@@ -23,8 +23,6 @@ class Shopgate_Framework_Helper_Client extends Mage_Core_Helper_Abstract
 {
     /**
      * Define identifier for cart type app
-     *
-     * This constant is also defined in the clouapi plugin and has to have the same value
      */
     const VALUE_APP = 'app';
 
