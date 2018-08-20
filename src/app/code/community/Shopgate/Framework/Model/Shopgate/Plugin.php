@@ -474,7 +474,10 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
      */
     public function _setQuoteClientType(Mage_Sales_Model_Quote $quote, ShopgateCartBase $order)
     {
-        $type = ($order->getClient() instanceof ShopgateClient) ? $order->getClient()->getType() : '';
+        if (!$order->getClient() instanceof ShopgateClient) {
+            return;
+        }
+        $type = $this->getClientHelper()->getMagentoCartTypeFromClient($order->getClient());
         $quote->getShippingAddress()->setData(Shopgate_Framework_Model_SalesRule_Condition::CART_TYPE, $type);
     }
 
