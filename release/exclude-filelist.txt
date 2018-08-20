@@ -4,3 +4,5 @@
 .php-cs.cache
 .php-cs.dist
 .travis.yml
+*.DS_Store
+__MACOSX

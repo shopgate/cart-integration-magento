@@ -28,25 +28,13 @@ class Shopgate_Framework_Model_System_Config_Source_Cart_Types
     {
         return array(
             array(
-                'value' => ShopgateClient::TYPE_MOBILESITE,
-                'label' => Mage::helper('shopgate')->__('Mobile site')
+                'value' => Shopgate_Framework_Helper_Client::VALUE_APP,
+                'label' => Mage::helper('shopgate')->__('Shopgate Mobile App'),
             ),
             array(
-                'value' => ShopgateClient::TYPE_IPHONEAPP,
-                'label' => Mage::helper('shopgate')->__('IPhone App')
+                'value' => Shopgate_Framework_Helper_Client::VALUE_MOBILESITE,
+                'label' => Mage::helper('shopgate')->__('Shopgate Mobile Site'),
             ),
-            array(
-                'value' => ShopgateClient::TYPE_IPADAPP,
-                'label' => Mage::helper('shopgate')->__('IPad App')
-            ),
-            array(
-                'value' => ShopgateClient::TYPE_ANDROIDPHONEAPP,
-                'label' => Mage::helper('shopgate')->__('Android App')
-            ),
-            array(
-                'value' => ShopgateClient::TYPE_ANDROIDTABLETAPP,
-                'label' => Mage::helper('shopgate')->__('Android tablet App')
-            )
         );
     }
 }
