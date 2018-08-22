@@ -5,4 +5,4 @@
 /vendor
 /release/magento
 /release/magento1702.zip
-/shopgate-magento-integration.tgz
+/shopgate_module-*.tgz

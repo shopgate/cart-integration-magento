@@ -90,7 +90,10 @@ class Shopgate_Framework_Model_Carrier_Fix
         $method->setData('carrier', $this->_code);
         $method->setData('carrier_title', $group !== ShopgateDeliveryNote::OTHER ? $group : '');
         $method->setData('method', $this->_method);
-        $method->setData('method_title', $shippingInfo->getDisplayName());
+        $displayName = ($shopgateOrder->getShippingType()
+            === Shopgate_Framework_Model_Shopgate_Shipping_Mapper::SHIPPING_TYPE_PLUGINAPI)
+            ? $shippingInfo->getDisplayName() : $shippingInfo->getName();
+        $method->setData('method_title', $displayName);
 
         $scopeId             = Mage::helper('shopgate/config')->getConfig()->getStoreViewId();
         $shippingIncludesTax = Mage::helper('tax')->shippingPriceIncludesTax($scopeId);

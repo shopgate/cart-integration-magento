@@ -109,15 +109,15 @@ class Shopgate_Framework_Helper_Customer extends Shopgate_Framework_Helper_Data
                 $gender = $option['label'];
             }
         }
+        $prefix = $data->getPrefix();
 
-        switch ($gender) {
-            case 'Male':
-                return ShopgateCustomer::MALE;
-            case 'Female':
-                return ShopgateCustomer::FEMALE;
-            default:
-                return '';
+        if ($gender === 'Male' || $prefix === $this->__('Mr.')) {
+            return ShopgateCustomer::MALE;
+        } elseif ($gender === 'Female' || $prefix === $this->__('Mrs.')) {
+            return ShopgateCustomer::FEMALE;
         }
+
+        return '';
     }
 
     /**
