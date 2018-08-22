@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.9.70] - 2018-08-22
 ### Fixed
 - Naming of shipping methods in order import
 - Improved app-only cart rules, old cart rules have to be reconfigured
@@ -1303,7 +1305,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.69...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.70...HEAD
+[2.9.70]: https://github.com/shopgate/cart-integration-magento/compare/2.9.69...2.9.70
 [2.9.69]: https://github.com/shopgate/cart-integration-magento/compare/2.9.68...2.9.69
 [2.9.68]: https://github.com/shopgate/cart-integration-magento/compare/2.9.67...2.9.68
 [2.9.67]: https://github.com/shopgate/cart-integration-magento/compare/2.9.66...2.9.67
