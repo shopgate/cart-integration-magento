@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - Naming of shipping methods in order import
 - Improved app-only cart rules, old cart rules have to be reconfigured
+- Improved mapping of customers gender and prefix
 
 ## [2.9.69] - 2018-07-09
 ### Fixed

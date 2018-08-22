@@ -116,8 +116,17 @@ class Shopgate_Framework_Helper_Customer extends Shopgate_Framework_Helper_Data
             case 'Female':
                 return ShopgateCustomer::FEMALE;
             default:
-                return '';
         }
+
+        switch ($data->getPrefix()) {
+            case $this->__('Mr.'):
+                return ShopgateCustomer::MALE;
+            case $this->__('Mrs.'):
+                return ShopgateCustomer::FEMALE;
+            default:
+                return null;
+        }
+
     }
 
     /**
