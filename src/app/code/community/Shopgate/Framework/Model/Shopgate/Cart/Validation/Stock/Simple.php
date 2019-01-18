@@ -61,16 +61,7 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Simple
             $checkIncrements = $stockItem->checkQtyIncrements($item->getQty());
         }
 
-        if (!$product->isAvailable()) {
-            $isBuyable        = false;
-            $error            = array();
-            $error['type']    = ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND;
-            $error['message'] = ShopgateLibraryException::getMessageFor(
-                ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND
-            );
-            $errors[]         = $error;
-
-        } elseif ($stockItem->getManageStock() && !$product->isSaleable() && !$stockItem->getBackorders()) {
+        if ($stockItem->getManageStock() && !$product->isSaleable() && !$stockItem->getBackorders()) {
             $isBuyable        = false;
             $error            = array();
             $error['type']    = ShopgateLibraryException::CART_ITEM_OUT_OF_STOCK;
@@ -98,6 +89,14 @@ class Shopgate_Framework_Model_Shopgate_Cart_Validation_Stock_Simple
             $stockItem->setQty(
                 (int)($item->getQtyToAdd() / $stockItem->getQtyIncrements()) * $stockItem->getQtyIncrements()
             );
+        } elseif (!$product->isAvailable()) {
+            $isBuyable        = false;
+            $error            = array();
+            $error['type']    = ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND;
+            $error['message'] = ShopgateLibraryException::getMessageFor(
+                ShopgateLibraryException::CART_ITEM_PRODUCT_NOT_FOUND
+            );
+            $errors[]         = $error;
         }
 
         $qtyBuyable = $isBuyable ? (int)$item->getQty() : (int)$stockItem->getQty();
