@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 ### Fixed
-- Error message about about a product being out of stock
+- Error message about a product being out of stock
 
 ## [2.9.70] - 2018-08-22
 ### Fixed
