@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Fixed
 - Error message about a product being out of stock
+- Cron job for shipping synchronisation in case of many shipping notifications
 
 ## [2.9.70] - 2018-08-22
 ### Fixed

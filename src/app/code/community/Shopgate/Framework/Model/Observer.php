@@ -128,7 +128,8 @@ class Shopgate_Framework_Model_Observer
                         break;
                 }
 
-                $notes[] = array('service' => $carrier, 'tracking_number' => $track->getNumber());
+                $notes[$carrier . '-' . $track->getNumber()] =
+                    array('service' => $carrier, 'tracking_number' => $track->getNumber());
             }
 
             foreach ($notes as $note) {
@@ -251,7 +252,7 @@ class Shopgate_Framework_Model_Observer
             && $order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE
         ) {
             ShopgateLogger::getInstance()->log(
-                "> (#{$orderNumber}) Order state is complete and should send to Shopgate",
+                "> (#{$orderNumber}) Order state is complete. Will send shipping to Shopgate",
                 ShopgateLogger::LOGTYPE_DEBUG
             );
             $isShipmentComplete = true;
@@ -259,7 +260,7 @@ class Shopgate_Framework_Model_Observer
 
         if (!$isShipmentComplete) {
             ShopgateLogger::getInstance()->log(
-                "> (#{$orderNumber}) This order is not shipped completly",
+                "> (#{$orderNumber}) This order is not shipped completely",
                 ShopgateLogger::LOGTYPE_DEBUG
             );
 
@@ -273,7 +274,7 @@ class Shopgate_Framework_Model_Observer
             );
             $this->_merchantApi->setOrderShippingCompleted($shopgateOrder->getShopgateOrderNumber());
             ShopgateLogger::getInstance()->log(
-                "> (#{$orderNumber}) Call to SMA::setOrderShippingCompleted was successfull!",
+                "> (#{$orderNumber}) Call to SMA::setOrderShippingCompleted was successful!",
                 ShopgateLogger::LOGTYPE_DEBUG
             );
         } catch (ShopgateMerchantApiException $e) {
