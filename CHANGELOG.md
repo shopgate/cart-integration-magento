@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - Error message about a product being out of stock
 - Cron job for shipping synchronisation in case of many shipping notifications
+- Improved calculation of net/gross amount of products in cart validation 
 
 ## [2.9.70] - 2018-08-22
 ### Fixed
