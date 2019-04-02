@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [2.9.71] - 2019-04-02
+### Fixed
+- Error message about a product being out of stock
+- Cron job for shipping synchronisation in case of many shipping notifications
+- Improved calculation of net/gross amount of products in cart validation 
 
 ## [2.9.70] - 2018-08-22
 ### Fixed
@@ -1305,7 +1310,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.70...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.71...HEAD
+[2.9.71]: https://github.com/shopgate/cart-integration-magento/compare/2.9.70...2.9.71
 [2.9.70]: https://github.com/shopgate/cart-integration-magento/compare/2.9.69...2.9.70
 [2.9.69]: https://github.com/shopgate/cart-integration-magento/compare/2.9.68...2.9.69
 [2.9.68]: https://github.com/shopgate/cart-integration-magento/compare/2.9.67...2.9.68
