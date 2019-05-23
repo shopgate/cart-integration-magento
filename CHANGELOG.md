@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Install problems per Magento Connect for servers with PHP version >7.2.0
+
+### Added
+- Description for text input length in product export 
+
 ## [2.9.71] - 2019-04-02
 ### Fixed
 - Error message about a product being out of stock

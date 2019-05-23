@@ -1205,6 +1205,11 @@ class Shopgate_Framework_Model_Export_Product_Xml extends Shopgate_Model_Catalog
             $inputItem->setLabel($option->getTitle());
             $inputItem->setRequired($option->getIsRequire());
             $inputItem->setSortOrder($option->getSortOrder());
+            if ($option->getMaxCharacters()) {
+                $inputItem->setInfoText(Mage::helper('catalog')->__('Maximum number of characters:')
+                    . ' ' . $option->getMaxCharacters()
+                );
+            }
 
             /**
              * add additional price for types without options
