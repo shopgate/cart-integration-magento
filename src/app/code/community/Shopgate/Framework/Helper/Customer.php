@@ -238,22 +238,4 @@ class Shopgate_Framework_Helper_Customer extends Shopgate_Framework_Helper_Data
         }
         $magentoCustomer->save();
     }
-
-    /**
-     * add customer to cart e.g to validate customer related price rules
-     *
-     * @param ShopgateCart $cart
-     */
-    public function addCustomerToCart(&$cart)
-    {
-        if ($cart->getMail()) {
-            /** @var Mage_Customer_Model_Customer $magentoCustomer */
-            $magentoCustomer = Mage::getModel("customer/customer");
-            $magentoCustomer->setWebsiteId(Mage::app()->getWebsite()->getid());
-            $magentoCustomer->loadByEmail($cart->getMail());
-            if ($magentoCustomer->getId()) {
-                $cart->setExternalCustomerId($magentoCustomer->getId());
-            }
-        }
-    }
 }

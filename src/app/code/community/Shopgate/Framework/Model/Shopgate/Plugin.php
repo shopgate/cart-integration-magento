@@ -1571,7 +1571,6 @@ class Shopgate_Framework_Model_Shopgate_Plugin extends ShopgatePlugin
         $db               = Mage::getSingleton('core/resource')->getConnection('core_write');
         $db->beginTransaction();
         $this->_errorOnInvalidCoupon = false;
-        $this->_getCustomerHelper()->addCustomerToCart($cart);
         Mage::register('shopgate_order', $cart, true);
         $mageCart = $this->_createMagentoCartFromShopgateCart($cart);
         $affiliateFactory->setUp($mageCart->getQuote());
