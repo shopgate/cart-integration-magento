@@ -248,10 +248,11 @@ class Shopgate_Framework_Helper_Sales extends Mage_Core_Helper_Abstract
      * @param int   $taxClassId
      * @param float $amountNet
      * @param float $amountGross
+     * @param bool  $forceRecalculate
      *
      * @return float
      */
-    public function getOriginalGrossAmount($storeId, $taxClassId, $amountNet, $amountGross)
+    public function getOriginalGrossAmount($storeId, $taxClassId, $amountNet, $amountGross, $forceRecalculate = false)
     {
         if ((Mage::helper('shopgate/config')->getIsMagentoVersionLower19()
              || !Mage::helper('tax')->isCrossBorderTradeEnabled($storeId))
@@ -267,7 +268,7 @@ class Shopgate_Framework_Helper_Sales extends Mage_Core_Helper_Abstract
             $request      = $calc->getRateRequest(null, null, null, $store);
             $includedRate = $calc->getRate($request->setProductClassId($taxClassId)) / 100;
 
-            $amountGross = $includedRate != $originaRate
+            $amountGross = ($forceRecalculate || ($includedRate !== $originaRate))
                 ? $amountNet * (1 + $originaRate)
                 : $amountGross;
         }

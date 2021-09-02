@@ -104,7 +104,7 @@ class Shopgate_Framework_Model_Carrier_Fix
 
         if ($shippingIncludesTax) {
             $shippingAmount = Mage::helper('shopgate/sales')
-                                  ->getOriginalGrossAmount($scopeId, $shippingTaxClass, $amountNet, $amountGross);
+                ->getOriginalGrossAmount($scopeId, $shippingTaxClass, $amountNet, $amountGross, true);
         } else {
             $shippingAmount = $amountNet;
         }
