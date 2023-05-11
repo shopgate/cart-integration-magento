@@ -61,7 +61,7 @@ jobs:
           draft: true
           prerelease: true
           fail_on_unmatched_files: true
-          files: ./shopgate-module-${{ steps.set-tag.outputs.TAG_NAME }}.tgz
+          files: ./shopgate_module-${{ steps.set-tag.outputs.TAG_NAME }}.tgz
 
   notify-release-success:
     name: Notify developers of new release
