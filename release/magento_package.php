@@ -60,6 +60,6 @@ if (empty($shopgateModuleName)) {
 }
 
 echo $shopgateModuleName . " is moved\n";
-rename('./var/connect/' . $shopgateModuleName, __DIR__ . '/' . $shopgateModuleName);
+rename('./var/connect/' . $shopgateModuleName, __DIR__ . '/../' . $shopgateModuleName);
 
 echo "done!\n";
