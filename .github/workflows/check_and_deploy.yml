@@ -1,4 +1,4 @@
-name: Run tests, dependency audit, CS fixer & deploy
+name: Run tests, dependency audit & deploy
 on: [push]
 jobs:
   check:
