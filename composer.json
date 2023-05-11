@@ -3,6 +3,10 @@
   "description": "Integrates the Magento 1 shopping cart solution with Shopgate",
   "homepage": "https://github.com/shopgate/cart-integration-magento",
   "license": "Apache-2.0",
+  "type": "magento-module",
+  "scripts": {
+    "test": "phpunit"
+  },
   "config": {
     "platform": {
       "php": "5.3.3"
