@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.9.72] - 2023-05-11
 ### Added
 - Description for text input length in product export 
 
@@ -1318,7 +1320,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - add delivery notes with carrier to shopgate
 - bug-fixes
 
-[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.71...HEAD
+[Unreleased]: https://github.com/shopgate/cart-integration-magento/compare/2.9.72...HEAD
+[2.9.72]: https://github.com/shopgate/cart-integration-magento/compare/2.9.71...2.9.72
 [2.9.71]: https://github.com/shopgate/cart-integration-magento/compare/2.9.70...2.9.71
 [2.9.70]: https://github.com/shopgate/cart-integration-magento/compare/2.9.69...2.9.70
 [2.9.69]: https://github.com/shopgate/cart-integration-magento/compare/2.9.68...2.9.69
