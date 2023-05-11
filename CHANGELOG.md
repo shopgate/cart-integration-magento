@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - Install problems per Magento Connect for servers with PHP version >7.2.0
 - Customer group specific discounts
+- Shipping costs in order import for non-default countries
 
 ## [2.9.71] - 2019-04-02
 ### Fixed
